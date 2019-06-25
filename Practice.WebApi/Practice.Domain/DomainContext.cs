@@ -7,7 +7,8 @@ namespace Practice.Domain
     /// </summary>
     public class DomainContext : DbContext
     {
-        public DomainContext()
+		
+		public DomainContext()
             : base()
         {
         }
@@ -23,7 +24,9 @@ namespace Practice.Domain
         /// <param name="mb">Модель БД</param>
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            // TODO:
-        }
+			mb.Entity<Code>()
+				.HasMany(b => b.Attributes); // вроде как связь один ко многим или это в Attributes надо писать?
+				
+		}
     }
 }
