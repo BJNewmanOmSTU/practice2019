@@ -34,6 +34,12 @@ namespace Practice.Domain
 				eb.HasKey(k => k.Id);
 				eb.Property(p => p.Id).HasMaxLength(32);
 			});
+
+			mb.Entity<Store>(eb =>
+			{
+				eb.HasKey(p => p.Id);
+				eb.Property(p => p.Id).HasMaxLength(32);
+			});
 		}
     }
 }
