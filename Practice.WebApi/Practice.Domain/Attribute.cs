@@ -5,12 +5,44 @@ using System.Threading.Tasks;
 
 namespace Practice.Domain
 {
+	/// <summary>
+	///Модель Attribute. Содержит свойства продукта
+	///которые клиент может выбирать при покупке продукта.
+	/// </summary>
 	public class Attribute
 	{
-		public int AttributeId { get; set; }
-		public int title { get; set; }
-		public object value { get; set; }
-		public String comment { get; set; }
-		public String TypeId { get; set; }
+		/// <summary>
+		///Идентификатор аттрибута
+		/// </summary>
+		public string Id { get; set; }
+		/// <summary>
+		///Название аттрибута
+		/// </summary>
+		public string Title { get; set; }
+		/// <summary>
+		/// Значение атрибута
+		/// </summary>
+		public string Value { get; set; }
+		/// <summary>
+		///  Кооментарий к аттрибуту
+		/// </summary>
+		public string Comment { get; set; }
+		/// <summary>
+		/// Тип атрибута
+		/// </summary>
+		public string TypeId { get; set; }
+		/// <summary>
+		///	Внешний ключ на модель Code
+		/// </summary>
+		public string CodeId { get; set; }
+		/// <summary>
+		///	Ссылка на модель Code
+		/// </summary>
+		public Code Code { get; set; }
+		
+		public Attribute()
+		{
+			this.Id = Guid.NewGuid().ToString("N");
+		}
 	}
 }

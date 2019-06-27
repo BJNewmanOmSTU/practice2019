@@ -18,15 +18,22 @@ namespace Practice.Domain
         {
         }
 
-        /// <summary>
-        /// В этом методе описывается создание моделей и настройка полей
-        /// </summary>
-        /// <param name="mb">Модель БД</param>
-        protected override void OnModelCreating(ModelBuilder mb)
-        {
-			mb.Entity<Code>()
-				.HasMany(b => b.Attributes); // вроде как связь один ко многим или это в Attributes надо писать?
-				
+		/// <summary>
+		/// В этом методе описывается создание моделей и настройка полей
+		/// </summary>
+		/// <param name="mb">Модель БД</param>
+		protected override void OnModelCreating(ModelBuilder mb)
+		{
+			mb.Entity<Code>(eb => {
+				eb.HasKey(k => k.Id);
+				eb.Property(p => p.Id).HasMaxLength(32);
+				eb.HasMany(p => p.Attributes).WithOne(p => p.Code).HasForeignKey(p => p.CodeId);
+			});
+
+			mb.Entity<Attribute>(eb => {
+				eb.HasKey(k => k.Id);
+				eb.Property(p => p.Id).HasMaxLength(32);
+			});
 		}
     }
 }

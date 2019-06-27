@@ -1,8 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190627072326_Created_Models_Code_and_Attribute.cs" />
+    <Compile Remove="Migrations\20190627072326_Created_Models_Code_and_Attribute.Designer.cs" />
+    <Compile Remove="Migrations\20190627073142_Created_Models_Code_and_Attribute.cs" />
+    <Compile Remove="Migrations\20190627073142_Created_Models_Code_and_Attribute.Designer.cs" />
+    <Compile Remove="Migrations\20190627073340_Created_Models_Code_and_Attribute.cs" />
+    <Compile Remove="Migrations\20190627073340_Created_Models_Code_and_Attribute.Designer.cs" />
+    <Compile Remove="Migrations\20190627074442_Removed_Field_AttributeId.cs" />
+    <Compile Remove="Migrations\20190627074442_Removed_Field_AttributeId.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="appsettings.Development.json" />
@@ -16,7 +27,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="2.2.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
   </ItemGroup>
 
