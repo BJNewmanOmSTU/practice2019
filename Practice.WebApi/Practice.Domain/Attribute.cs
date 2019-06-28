@@ -39,7 +39,10 @@ namespace Practice.Domain
 		///	Ссылка на модель Code
 		/// </summary>
 		public Code Code { get; set; }
-		
+
+		/// <summary>
+		/// Конструктор класса. При каждом создании нового экземпляра генерирует идентификатор
+		/// </summary>
 		public Attribute()
 		{
 			this.Id = Guid.NewGuid().ToString("N");

@@ -2,7 +2,7 @@
 
 namespace Practice.Domain.Migrations
 {
-    public partial class Created_Models_Code_and_Attribute : Migration
+    public partial class Created_Models_Code_and_Attribute_Added_Context_and_relation_description : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,6 @@ namespace Practice.Domain.Migrations
                     ProductTemplateId = table.Column<string>(nullable: true),
                     SellSource = table.Column<string>(nullable: true),
                     StoreId = table.Column<string>(nullable: true),
-                    AttributeId = table.Column<string>(nullable: true),
                     Amount = table.Column<long>(nullable: false),
                     Symbol = table.Column<string>(nullable: true)
                 },

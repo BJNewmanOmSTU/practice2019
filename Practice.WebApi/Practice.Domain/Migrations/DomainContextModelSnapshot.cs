@@ -49,8 +49,6 @@ namespace Practice.Domain.Migrations
 
                     b.Property<long>("Amount");
 
-                    b.Property<string>("AttributeId");
-
                     b.Property<string>("ProductTemplateId");
 
                     b.Property<string>("SellSource");
