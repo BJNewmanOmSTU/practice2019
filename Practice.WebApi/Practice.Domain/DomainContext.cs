@@ -17,6 +17,9 @@ namespace Practice.Domain
         {
         }
 
+		public DbSet<Code> Codes { get; set; }
+		public DbSet<Attribute> Attributes { get; set; }
+
 		/// <summary>
 		/// В этом методе описывается создание моделей и настройка полей
 		/// </summary>
