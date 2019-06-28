@@ -9,8 +9,8 @@ using Practice.Domain;
 namespace Practice.Domain.Migrations
 {
     [DbContext(typeof(DomainContext))]
-    [Migration("20190627073918_Created_Models_Code_and_Attribute")]
-    partial class Created_Models_Code_and_Attribute
+    [Migration("20190628044832_Created_Models_Code_and_Attribute_Added_Context_and_relation_description")]
+    partial class Created_Models_Code_and_Attribute_Added_Context_and_relation_description
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,8 +50,6 @@ namespace Practice.Domain.Migrations
                         .HasMaxLength(32);
 
                     b.Property<long>("Amount");
-
-                    b.Property<string>("AttributeId");
 
                     b.Property<string>("ProductTemplateId");
 

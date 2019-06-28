@@ -41,9 +41,12 @@ namespace Practice.Domain
 		/// </summary>
 		public string Symbol { get; set; }
 
+		/// <summary>
+		/// Конструктор класса. При каждом создании нового экземпляра генерирует идентификатор
+		/// </summary>
 		public Code()
 		{
-			Id = Guid.NewGuid().ToString("N");
+			Id = IdGenerator.GenerateId();
 			Attributes = new List<Attribute>();
 		}
 	}
