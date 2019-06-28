@@ -6,9 +6,9 @@ namespace Practice.Domain.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
+           /* migrationBuilder.DropColumn(
                 name: "AttributeId",
-                table: "Code");
+                table: "Code");*/
 
             migrationBuilder.CreateTable(
                 name: "Store",

@@ -18,9 +18,12 @@ namespace Practice.Domain
 		/// </summary>
 		public string Title { get; set; }
 
+		/// <summary>
+		/// Конструктор класса ProductTemplate. При каждом создании нового экземпляра генерирует идентификатор
+		/// </summary>
 		public ProductTemplate()
 		{
-			Id = Guid.NewGuid().ToString("N");
+			Id = Identity.NewId();
 		}
 	}
 

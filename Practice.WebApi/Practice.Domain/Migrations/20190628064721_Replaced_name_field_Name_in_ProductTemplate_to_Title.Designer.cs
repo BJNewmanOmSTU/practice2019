@@ -9,8 +9,8 @@ using Practice.Domain;
 namespace Practice.Domain.Migrations
 {
     [DbContext(typeof(DomainContext))]
-    [Migration("20190627073918_Created_Models_Code_and_Attribute")]
-    partial class Created_Models_Code_and_Attribute
+    [Migration("20190628064721_Replaced_name_field_Name_in_ProductTemplate_to_Title")]
+    partial class Replaced_name_field_Name_in_ProductTemplate_to_Title
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,8 +51,6 @@ namespace Practice.Domain.Migrations
 
                     b.Property<long>("Amount");
 
-                    b.Property<string>("AttributeId");
-
                     b.Property<string>("ProductTemplateId");
 
                     b.Property<string>("SellSource");
@@ -64,6 +62,32 @@ namespace Practice.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Code");
+                });
+
+            modelBuilder.Entity("Practice.Domain.ProductTemplate", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(32);
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductTemplate");
+                });
+
+            modelBuilder.Entity("Practice.Domain.Store", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(32);
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Store");
                 });
 
             modelBuilder.Entity("Practice.Domain.Attribute", b =>
