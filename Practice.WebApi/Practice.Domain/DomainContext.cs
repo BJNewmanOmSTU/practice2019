@@ -7,11 +7,6 @@ namespace Practice.Domain
     /// </summary>
     public class DomainContext : DbContext
     {
-		/// <summary>
-		/// Максимальная длина поля ID
-		/// </summary>
-		private int MaxId = ProjectConstants.ID_FIELD_MAX_LENGTH;
-		
 		public DomainContext()
             : base()
         {
@@ -30,19 +25,19 @@ namespace Practice.Domain
 		{
 			mb.Entity<Code>(eb => {
 				eb.HasKey(k => k.Id);
-				eb.Property(p => p.Id).HasMaxLength(MaxId);
+				eb.Property(p => p.Id).HasMaxLength(ProjectConstants.ID_MAX_LENGTH_32);
 				eb.HasMany(p => p.Attributes).WithOne(p => p.Code).HasForeignKey(p => p.CodeId);
 			});
 
 			mb.Entity<Attribute>(eb => {
 				eb.HasKey(k => k.Id);
-				eb.Property(p => p.Id).HasMaxLength(MaxId);
+				eb.Property(p => p.Id).HasMaxLength(ProjectConstants.ID_MAX_LENGTH_32);
 			});
 
 			mb.Entity<Store>(eb =>
 			{
 				eb.HasKey(p => p.Id);
-				eb.Property(p => p.Id).HasMaxLength(32);
+				eb.Property(p => p.Id).HasMaxLength(ProjectConstants.ID_MAX_LENGTH_32);
 			});
 		}
     }

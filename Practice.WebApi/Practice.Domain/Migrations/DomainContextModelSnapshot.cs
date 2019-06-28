@@ -62,19 +62,6 @@ namespace Practice.Domain.Migrations
                     b.ToTable("Code");
                 });
 
-            modelBuilder.Entity("Practice.Domain.Store", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(32);
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Store");
-                });
-
             modelBuilder.Entity("Practice.Domain.Attribute", b =>
                 {
                     b.HasOne("Practice.Domain.Code", "Code")

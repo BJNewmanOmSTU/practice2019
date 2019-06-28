@@ -12,6 +12,6 @@ namespace Practice.Domain
 		/// <summary>
 		/// Максимальная длина поля ID
 		/// </summary>
-		public const int ID_FIELD_MAX_LENGTH = 32;
+		public const int ID_MAX_LENGTH_32 = 32;
 	}
 }

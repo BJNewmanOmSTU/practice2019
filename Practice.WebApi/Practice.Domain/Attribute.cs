@@ -45,7 +45,7 @@ namespace Practice.Domain
 		/// </summary>
 		public Attribute()
 		{
-			this.Id = Guid.NewGuid().ToString("N");
+			this.Id = Identity.NewId();
 		}
 	}
 }

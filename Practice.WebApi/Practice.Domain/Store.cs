@@ -17,9 +17,13 @@ namespace Practice.Domain
 		/// Название магазина
 		/// </summary>
 		public string Name { get; set; }
+
+		/// <summary>
+		/// Конструктор класса. При каждом создании нового экземпляра генерирует идентификатор
+		/// </summary>
 		public Store()
 		{
-			Id = Guid.NewGuid().ToString("N");
+			Id = Identity.NewId();
 		}
 	}
 }

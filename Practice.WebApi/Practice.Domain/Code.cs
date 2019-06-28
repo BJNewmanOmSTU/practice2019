@@ -46,7 +46,7 @@ namespace Practice.Domain
 		/// </summary>
 		public Code()
 		{
-			Id = IdGenerator.GenerateId();
+			Id = Identity.NewId();
 			Attributes = new List<Attribute>();
 		}
 	}
