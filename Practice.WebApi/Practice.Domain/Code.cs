@@ -40,7 +40,6 @@ namespace Practice.Domain
 		///Обозначение заказа
 		/// </summary>
 		public string Symbol { get; set; }
-
 		/// <summary>
 		/// Конструктор класса Code. При каждом создании нового экземпляра генерирует идентификатор
 		/// </summary>

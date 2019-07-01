@@ -15,6 +15,14 @@
     <Compile Remove="Migrations\20190627074442_Removed_Field_AttributeId.Designer.cs" />
     <Compile Remove="Migrations\20190628055133_Example.cs" />
     <Compile Remove="Migrations\20190628055133_Example.Designer.cs" />
+    <Compile Remove="Migrations\20190701051256_Added CodeId to Store and ProducTemplate.cs" />
+    <Compile Remove="Migrations\20190701051256_Added CodeId to Store and ProducTemplate.Designer.cs" />
+    <Compile Remove="Migrations\20190701051530_Added CodeId to Store and ProducTemplate.cs" />
+    <Compile Remove="Migrations\20190701051530_Added CodeId to Store and ProducTemplate.Designer.cs" />
+    <Compile Remove="Migrations\20190701051915_Added CodeId to Store and ProducTemplate.cs" />
+    <Compile Remove="Migrations\20190701051915_Added CodeId to Store and ProducTemplate.Designer.cs" />
+    <Compile Remove="Migrations\20190701052437_Added CodeId to Store and ProducTemplate.cs" />
+    <Compile Remove="Migrations\20190701052437_Added CodeId to Store and ProducTemplate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

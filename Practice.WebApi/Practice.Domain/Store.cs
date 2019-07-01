@@ -17,6 +17,7 @@ namespace Practice.Domain
 		/// Название магазина
 		/// </summary>
 		public string Title { get; set; }
+		public Code Code { get; set; }
 
 		/// <summary>
 		/// Конструктор класса Store. При каждом создании нового экземпляра генерирует идентификатор

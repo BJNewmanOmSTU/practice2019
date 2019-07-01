@@ -19,6 +19,8 @@ namespace Practice.Domain
 
 		public DbSet<Code> Codes { get; set; }
 		public DbSet<Attribute> Attributes { get; set; }
+		public DbSet<Store> Stores { get; set; }
+		public DbSet<ProductTemplate> ProductTemplates { get; set; }
 
 		/// <summary>
 		/// В этом методе описывается создание моделей и настройка полей
@@ -35,6 +37,7 @@ namespace Practice.Domain
 			mb.Entity<Attribute>(eb => {
 				eb.HasKey(k => k.Id);
 				eb.Property(p => p.Id).HasMaxLength(ProjectConstants.ID_MAX_LENGTH_32);
+				eb.HasOne(p => p.Code).WithMany(p => p.Attributes).HasForeignKey(p => p.CodeId);
 			});
 
 			mb.Entity<Store>(eb =>

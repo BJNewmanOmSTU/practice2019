@@ -17,6 +17,8 @@ namespace Practice.Domain
 		/// Название ProductTemplate
 		/// </summary>
 		public string Title { get; set; }
+		public Code Code { get; set; }
+
 
 		/// <summary>
 		/// Конструктор класса ProductTemplate. При каждом создании нового экземпляра генерирует идентификатор

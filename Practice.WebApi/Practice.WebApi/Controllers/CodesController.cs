@@ -38,9 +38,11 @@ namespace Practice.WebApi.Controllers
 
 		// GET api/<controller>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public string Get(string id)
 		{
-			return "value";
+			Domain.Attribute prod = _context.Attributes.Find("3c22fe2f386f420ea6e0d79fa6358a82");
+			return prod.Title;
+			//return "value";
 		}
 
 		// POST api/<controller>
