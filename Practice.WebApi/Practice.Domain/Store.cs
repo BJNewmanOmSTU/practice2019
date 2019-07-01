@@ -17,6 +17,9 @@ namespace Practice.Domain
 		/// Название магазина
 		/// </summary>
 		public string Title { get; set; }
+		/// <summary>
+		///	Ссылка на модель Code
+		/// </summary>
 		public Code Code { get; set; }
 
 		/// <summary>

@@ -17,6 +17,9 @@ namespace Practice.Domain
 		/// Название ProductTemplate
 		/// </summary>
 		public string Title { get; set; }
+		/// <summary>
+		///	Ссылка на модель Code
+		/// </summary>
 		public Code Code { get; set; }
 
 
