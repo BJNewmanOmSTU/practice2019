@@ -11,11 +11,11 @@ namespace Practice.Domain.Repository
 	/// </summary>
 	public class StoreRepository : IRepository<Store>
 	{
-		private DomainContext _dc;
+		private DomainContext _Dc;
 
 		public StoreRepository(DomainContext dc)
 		{
-			_dc = dc;
+			_Dc = dc;
 		}
 		/// <summary>
 		/// Создает запись
@@ -23,7 +23,7 @@ namespace Practice.Domain.Repository
 		/// <param name="item">Элемент</param>
 		public void Create(Store item)
 		{
-			_dc.Stores.Add(item);
+			_Dc.Stores.Add(item);
 		}
 		/// <summary>
 		/// Удаляет объект
@@ -39,14 +39,14 @@ namespace Practice.Domain.Repository
 		/// <param name="id">Идентификатор записи</param>
 		public Store Get(string id)
 		{
-			return _dc.Stores.Find(id);
+			return _Dc.Stores.Find(id);
 		}
 		/// <summary>
 		/// Возвращает все элементы содержащиеся в данной таблице
 		/// </summary>
 		public IEnumerable<Store> GetAll()
 		{			
-			return _dc.Stores;
+			return _Dc.Stores;
 		}
 		/// <summary>
 		/// Обновляет объект

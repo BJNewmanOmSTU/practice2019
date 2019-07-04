@@ -15,26 +15,32 @@ namespace Practice.Domain
 		///Идентификатор аттрибута
 		/// </summary>
 		public string Id { get; set; }
+		
 		/// <summary>
 		///Название аттрибута
 		/// </summary>
 		public string Title { get; set; }
+		
 		/// <summary>
 		/// Значение атрибута
 		/// </summary>
 		public string Value { get; set; }
+		
 		/// <summary>
 		///  Кооментарий к аттрибуту
 		/// </summary>
 		public string Comment { get; set; }
+		
 		/// <summary>
 		/// Тип атрибута
 		/// </summary>
 		public string TypeId { get; set; }
+		
 		/// <summary>
 		///	Внешний ключ на модель Code
 		/// </summary>
 		public string CodeId { get; set; }
+		
 		/// <summary>
 		///	Ссылка на модель Code
 		/// </summary>

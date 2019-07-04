@@ -18,8 +18,7 @@ namespace Practice.WebApi.Controllers
 		[HttpGet]
 		public IEnumerable<Store> GetStores()
 		{
-			IEnumerable<Store> StoresList = db.GetAll();
-			return StoresList;
+			return db.GetAll();
 		}
 				
 		[HttpGet("{id}")]

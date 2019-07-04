@@ -12,11 +12,19 @@ namespace Practice.Domain
 		/// <summary>
 		/// Идентификатор магазина
 		/// </summary>
+
 		public string Id { get; set; }
 		/// <summary>
 		/// Название магазина
 		/// </summary>
+		
 		public string Title { get; set; }
+
+		/// <summary>
+		/// Внешний ключ Code
+		/// </summary>
+		public string CodeId { get; set; }
+
 		/// <summary>
 		///	Ссылка на модель Code
 		/// </summary>
