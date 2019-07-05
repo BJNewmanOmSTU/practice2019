@@ -36,7 +36,17 @@ namespace Practice.Domain
 		///Внешний ключ на модель Store
 		/// </summary>
 		public string StoreId { get; set; }
-		
+
+		/// <summary>
+		/// Внешнее свойство на Store
+		/// </summary>
+		public Store Store { get; set; }
+
+		/// <summary>
+		/// Внешнее свойство на ProductTemplate
+		/// </summary>
+		public ProductTemplate ProductTemplate { get; set; }
+
 		/// <summary>
 		///Количество товара в заказе
 		/// </summary>

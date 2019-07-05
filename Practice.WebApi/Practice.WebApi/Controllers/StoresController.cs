@@ -1,30 +1,31 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Practice.Domain;
-using Practice.Domain.Repository;
+
 
 namespace Practice.WebApi.Controllers
 {
-	[Route("[controller]")]
+	[Route("stores")]
 	public class StoresController : Controller
 	{
-		IRepository<Store> db;
-
+		DbSet<Store> Store;
 		public StoresController(DomainContext db)
 		{
-			this.db = new StoreRepository(db);
+			//Code = db.Set<Code>();
 		}
 
 		[HttpGet]
-		public IEnumerable<Store> GetStores()
+		public Store GetStores()
 		{
-			return db.GetAll();
+			return Store.FirstOrDefault();
 		}
 				
-		[HttpGet("{id}")]
+		/*[HttpGet("{id}")]
 		public Store Get(string id)
 		{
 			return db.Get(id);
-		}
+		}*/
 	}
 }

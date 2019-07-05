@@ -17,11 +17,6 @@ namespace Practice.Domain
         {
         }
 
-		public DbSet<Code> Codes { get; set; }
-		public DbSet<Attribute> Attributes { get; set; }
-		public DbSet<Store> Stores { get; set; }
-		public DbSet<ProductTemplate> ProductTemplates { get; set; }
-
 		/// <summary>
 		/// В этом методе описывается создание моделей и настройка полей
 		/// </summary>
@@ -32,6 +27,8 @@ namespace Practice.Domain
 				eb.HasKey(k => k.Id);
 				eb.Property(p => p.Id).HasMaxLength(ProjectConstants.ID_MAX_LENGTH_32);
 				eb.HasMany(p => p.Attributes).WithOne(p => p.Code).HasForeignKey(p => p.CodeId);
+				eb.HasOne(p => p.ProductTemplate).WithMany(p => p.Codes).HasForeignKey(p => p.ProductTemplateId);
+				eb.HasOne(p => p.Store).WithMany(p => p.Codes).HasForeignKey(p => p.StoreId);
 			});
 
 			mb.Entity<Attribute>(eb => {
@@ -44,12 +41,14 @@ namespace Practice.Domain
 			{
 				eb.HasKey(p => p.Id);
 				eb.Property(p => p.Id).HasMaxLength(ProjectConstants.ID_MAX_LENGTH_32);
+				eb.HasMany(p => p.Codes).WithOne(p => p.Store).HasForeignKey(p => p.Store);
 			});
 
 			mb.Entity<ProductTemplate>(eb =>
 			{
 				eb.HasKey(p => p.Id);
 				eb.Property(p => p.Id).HasMaxLength(ProjectConstants.ID_MAX_LENGTH_32);
+				eb.HasMany(p => p.Codes).WithOne(p => p.ProductTemplate).HasForeignKey(p => p.ProductTemplateId);
 			});
 		}
     }

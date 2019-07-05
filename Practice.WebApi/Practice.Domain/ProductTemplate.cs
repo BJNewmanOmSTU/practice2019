@@ -17,12 +17,12 @@ namespace Practice.Domain
 		/// <summary>
 		/// Название ProductTemplate
 		/// </summary>
-		public string Title { get; set; }
-		
+		public string Name { get; set; }
+
 		/// <summary>
 		/// Внешний ключ Code
 		/// </summary>
-		public string CodeId { get; set; }
+		public List<Code> Codes { get; set; }
 
 		/// <summary>
 		///	Ссылка на модель Code
