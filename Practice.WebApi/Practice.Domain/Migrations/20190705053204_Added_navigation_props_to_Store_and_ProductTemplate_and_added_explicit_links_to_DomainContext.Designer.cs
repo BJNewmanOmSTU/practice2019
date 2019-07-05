@@ -9,8 +9,8 @@ using Practice.Domain;
 namespace Practice.Domain.Migrations
 {
     [DbContext(typeof(DomainContext))]
-    [Migration("20190627104922_Created_Model_Store_Added_context_Store")]
-    partial class Created_Model_Store_Added_context_Store
+    [Migration("20190705053204_Added_navigation_props_to_Store_and_ProductTemplate_and_added_explicit_links_to_DomainContext")]
+    partial class Added_navigation_props_to_Store_and_ProductTemplate_and_added_explicit_links_to_DomainContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,7 +61,24 @@ namespace Practice.Domain.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductTemplateId");
+
+                    b.HasIndex("StoreId");
+
                     b.ToTable("Code");
+                });
+
+            modelBuilder.Entity("Practice.Domain.ProductTemplate", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(32);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductTemplate");
                 });
 
             modelBuilder.Entity("Practice.Domain.Store", b =>
@@ -82,6 +99,17 @@ namespace Practice.Domain.Migrations
                     b.HasOne("Practice.Domain.Code", "Code")
                         .WithMany("Attributes")
                         .HasForeignKey("CodeId");
+                });
+
+            modelBuilder.Entity("Practice.Domain.Code", b =>
+                {
+                    b.HasOne("Practice.Domain.ProductTemplate", "ProductTemplate")
+                        .WithMany("Codes")
+                        .HasForeignKey("ProductTemplateId");
+
+                    b.HasOne("Practice.Domain.Store", "Store")
+                        .WithMany("Codes")
+                        .HasForeignKey("StoreId");
                 });
 #pragma warning restore 612, 618
         }

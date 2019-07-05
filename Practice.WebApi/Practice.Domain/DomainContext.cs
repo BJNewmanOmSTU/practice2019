@@ -41,7 +41,7 @@ namespace Practice.Domain
 			{
 				eb.HasKey(p => p.Id);
 				eb.Property(p => p.Id).HasMaxLength(ProjectConstants.ID_MAX_LENGTH_32);
-				eb.HasMany(p => p.Codes).WithOne(p => p.Store).HasForeignKey(p => p.Store);
+				eb.HasMany(p => p.Codes).WithOne(p => p.Store).HasForeignKey(p => p.StoreId);
 			});
 
 			mb.Entity<ProductTemplate>(eb =>

@@ -12,23 +12,16 @@ namespace Practice.Domain
 		/// <summary>
 		/// Идентификатор магазина
 		/// </summary>
-
 		public string Id { get; set; }
-		
 		/// <summary>
 		/// Название магазина
-		/// </summary>		
+		/// </summary>
 		public string Name { get; set; }
 
 		/// <summary>
-		/// Внешний ключ Code
+		/// Коллекция кодов
 		/// </summary>
 		public List<Code> Codes { get; set; }
-
-		/// <summary>
-		///	Ссылка на модель Code
-		/// </summary>
-		public Code Code { get; set; }
 
 		/// <summary>
 		/// Конструктор класса Store. При каждом создании нового экземпляра генерирует идентификатор
@@ -36,6 +29,7 @@ namespace Practice.Domain
 		public Store()
 		{
 			Id = Identity.NewId();
+			Codes = new List<Code>();
 		}
 	}
 }
