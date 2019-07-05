@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Practice.Domain;
-
+using Practice.WebApi.Services;
 
 namespace Practice.WebApi.Controllers
 {
@@ -12,26 +12,32 @@ namespace Practice.WebApi.Controllers
 	public class StoresController : Controller
 	{
 		DbSet<Store> Store;
-		public StoresController(DomainContext db)
+		IModelValidate<Store> _sv;
+		public StoresController(DomainContext db, StoreValid sv)
 		{
+			//_dc = db;
 			Store = db.Set<Store>();
+			_sv = sv;
 		}
 
 		[HttpGet]
-		[ProducesResponseType(StatusCodes.Status404NotFound)]
-		public ActionResult<Store> GetStores()
-		{
-			if(!Store.Any())
-			{
-				return NotFound("Не найдено!");
-			}
-			return Store.Include(p => p.Codes).FirstOrDefault();
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public ActionResult<List<Store>> GetStores()
+		{			
+			if(!_sv.Get(out List<Store> st))
+				return BadRequest("Нет записей Stores!");
+			else
+				return st;
 		}
 				
-		/*[HttpGet("{id}")]
-		public Store Get(string id)
+		[HttpGet("{id}")]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public ActionResult<Store> Get(string id)
 		{
-			return db.Get(id);
-		}*/
+			if (!_sv.TryGetItem(id, out Store st)) {
+				return BadRequest("Не найдено!");
+			}
+			return st;
+		}
 	}
 }

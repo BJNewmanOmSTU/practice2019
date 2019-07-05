@@ -17,6 +17,7 @@ namespace Practice.Domain
         {
         }
 
+
 		/// <summary>
 		/// В этом методе описывается создание моделей и настройка полей
 		/// </summary>
