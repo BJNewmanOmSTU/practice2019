@@ -4,16 +4,16 @@ using System.Text;
 
 namespace Practice.Domain
 {
-	/// <summary>
+    /// <summary>
 	/// Модель Store. Содержит информацию о магазине.
 	/// </summary>
 	public class Store
-	{
+    {
 		/// <summary>
 		/// Идентификатор магазина
 		/// </summary>
 		public string Id { get; set; }
-		/// <summary>
+        /// <summary>
 		/// Название магазина
 		/// </summary>
 		public string Name { get; set; }

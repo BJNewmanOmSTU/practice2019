@@ -1,43 +1,46 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Practice.Domain;
 using Practice.WebApi.Services;
+using Practice.WebApi.Services.StoreServices;
 
 namespace Practice.WebApi.Controllers
 {
 	[Route("stores")]
 	public class StoresController : Controller
 	{
-		DbSet<Store> Store;
-		IModelValidate<Store> _sv;
-		public StoresController(DomainContext db, StoreValid sv)
+		DbSet<Store> _stores;
+		IStoreService<Store> _storeService; // переим
+		public StoresController(DomainContext db, StoreService storeService)
 		{
-			//_dc = db;
-			Store = db.Set<Store>();
-			_sv = sv;
+			_stores = db.Set<Store>();
+			_storeService = storeService;
 		}
-
+		
 		[HttpGet]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public ActionResult<List<Store>> GetStores()
-		{			
-			if(!_sv.Get(out List<Store> st))
-				return BadRequest("Нет записей Stores!");
-			else
-				return st;
+		public ActionResult<List<Store>> GetListStores(SearchStore searchStore)
+		{
+			List<Store> res = _storeService.GetListStores(searchStore);
+			if (!res.Any())
+				return BadRequest("Не найдено!");
+			return res.ToList();
 		}
-				
+
 		[HttpGet("{id}")]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public ActionResult<Store> Get(string id)
 		{
-			if (!_sv.TryGetItem(id, out Store st)) {
-				return BadRequest("Не найдено!");
+			try { 
+			return _storeService.GetStore(id);
+			}catch(Exception ex)
+			{
+				return NotFound(ex.Message);
 			}
-			return st;
 		}
 	}
 }
