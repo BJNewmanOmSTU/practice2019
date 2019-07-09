@@ -13,12 +13,16 @@ namespace Practice.Domain
 		/// Идентификатор ProductTemplate
 		/// </summary>
 		public string Id { get; set; }
+
 		/// <summary>
 		/// Название ProductTemplate
 		/// </summary>
-		public string Title { get; set; }
-		public Code Code { get; set; }
+		public string Name { get; set; }
 
+		/// <summary>
+		/// Коллекция кодов
+		/// </summary>
+		public List<Code> Codes { get; set; }
 
 		/// <summary>
 		/// Конструктор класса ProductTemplate. При каждом создании нового экземпляра генерирует идентификатор
@@ -26,6 +30,7 @@ namespace Practice.Domain
 		public ProductTemplate()
 		{
 			Id = Identity.NewId();
+			Codes = new List<Code>();
 		}
 	}
 

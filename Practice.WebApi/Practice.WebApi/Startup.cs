@@ -11,7 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Practice.Domain;
-
+using Practice.WebApi.Services.ProductTemplatesServices;
+using Practice.WebApi.Mapper;
 
 namespace Practice.WebApi
 {
@@ -30,6 +31,8 @@ namespace Practice.WebApi
 			services.AddDbContext<DomainContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddMvc();
+			services.AddTransient<ContractMapper>();
+			services.AddTransient<ProductTemplateService>();
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
