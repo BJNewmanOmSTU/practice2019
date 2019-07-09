@@ -13,6 +13,7 @@ namespace Practice.Domain
 		/// Идентификатор магазина
 		/// </summary>
 		public string Id { get; set; }
+
         /// <summary>
 		/// Название магазина
 		/// </summary>

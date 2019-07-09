@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Practice.WebApi.Services.StoreServices
 {
+	/// <summary>
+	/// Определяет ошибку при неверном запросе к модели Store
+	/// </summary>
 	public class StoreNotFoundException : SystemException
 	{
 		public StoreNotFoundException()

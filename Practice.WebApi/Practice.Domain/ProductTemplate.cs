@@ -13,6 +13,7 @@ namespace Practice.Domain
 		/// Идентификатор ProductTemplate
 		/// </summary>
 		public string Id { get; set; }
+
 		/// <summary>
 		/// Название ProductTemplate
 		/// </summary>
@@ -32,6 +33,4 @@ namespace Practice.Domain
 			Codes = new List<Code>();
 		}
 	}
-
-
 }
