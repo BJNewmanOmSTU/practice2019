@@ -31,14 +31,14 @@ namespace Practice.WebApi.Controllers
 		/// <summary>
 		/// Get запрос для получения списка элементов
 		/// </summary>
-		/// <param name="searchStore">Модель с нужными полями для фильтрации</param>
+		/// <param name="filter">Модель с нужными полями для фильтрации</param>
 		/// <returns>Возвращает весь список элементов Store
 		/// или отфильтрованный по параметрам,
 		/// если элементы не найдены возвращает ошибку</returns>
 		[HttpGet]
-		public ActionResult<List<StoreContractModel>> GetListStores(StoreFilterModel searchStore)
+		public ActionResult<List<StoreContractModel>> GetListStores(StoreFilterModel filter)
 		{			
-			return _storeService.GetListStores(searchStore);			
+			return _storeService.GetListStores(filter);			
 		}
 
 		/// <summary>
