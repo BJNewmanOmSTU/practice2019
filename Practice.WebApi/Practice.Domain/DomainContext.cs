@@ -17,7 +17,6 @@ namespace Practice.Domain
         {
         }
 
-
 		/// <summary>
 		/// В этом методе описывается создание моделей и настройка полей
 		/// </summary>
@@ -52,5 +51,5 @@ namespace Practice.Domain
 				eb.HasMany(p => p.Codes).WithOne(p => p.ProductTemplate).HasForeignKey(p => p.ProductTemplateId);
 			});
 		}
-    }
+	}
 }

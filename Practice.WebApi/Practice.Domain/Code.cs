@@ -16,22 +16,22 @@ namespace Practice.Domain
 		/// Идентификатор кода
 		/// </summary>
 		public string Id { get; set; }
-		
+
 		/// <summary>
 		///Внешний ключ на Продукт
 		/// </summary>
 		public string ProductTemplateId { get; set; }
-		
+
 		/// <summary>
 		///Список аттрибутов модели Attribute
 		/// </summary>
 		public ICollection<Attribute> Attributes { get; set; }
-		
+
 		/// <summary>
 		///Источник заказа
 		/// </summary>
 		public string SellSource { get; set; }
-		
+
 		/// <summary>
 		///Внешний ключ на Магазин
 		/// </summary>
@@ -51,12 +51,12 @@ namespace Practice.Domain
 		///Количество товара в заказе
 		/// </summary>
 		public long Amount { get; set; }
-		
+
 		/// <summary>
 		///Обозначение заказа
 		/// </summary>
 		public string Symbol { get; set; }
-		
+
 		/// <summary>
 		/// Конструктор класса Code. При каждом создании нового экземпляра генерирует идентификатор
 		/// </summary>

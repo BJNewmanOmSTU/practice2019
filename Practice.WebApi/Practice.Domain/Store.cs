@@ -14,7 +14,7 @@ namespace Practice.Domain
 		/// </summary>
 		public string Id { get; set; }
 
-        /// <summary>
+		/// <summary>
 		/// Название магазина
 		/// </summary>
 		public string Name { get; set; }
