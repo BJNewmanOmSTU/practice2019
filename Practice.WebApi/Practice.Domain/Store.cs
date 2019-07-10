@@ -4,17 +4,21 @@ using System.Text;
 
 namespace Practice.Domain
 {
-	/// <summary>
+    /// <summary>
 	/// Модель Store. Содержит информацию о магазине.
 	/// </summary>
 	public class Store
-	{
+    {
 		/// <summary>
 		/// Идентификатор магазина
 		/// </summary>
 		public string Id { get; set; }
 
+<<<<<<< HEAD
 		/// <summary>
+=======
+        /// <summary>
+>>>>>>> P2019-26_Add_endpoint_stores
 		/// Название магазина
 		/// </summary>
 		public string Name { get; set; }

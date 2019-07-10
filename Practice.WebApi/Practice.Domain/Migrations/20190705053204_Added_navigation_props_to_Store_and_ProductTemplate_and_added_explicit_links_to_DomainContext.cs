@@ -2,10 +2,34 @@
 
 namespace Practice.Domain.Migrations
 {
-    public partial class Created_Models_Code_and_Attribute_Added_Context_and_relation_description : Migration
+    public partial class Added_navigation_props_to_Store_and_ProductTemplate_and_added_explicit_links_to_DomainContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "ProductTemplate",
+                columns: table => new
+                {
+                    Id = table.Column<string>(maxLength: 32, nullable: false),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductTemplate", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Store",
+                columns: table => new
+                {
+                    Id = table.Column<string>(maxLength: 32, nullable: false),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Store", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Code",
                 columns: table => new
@@ -20,6 +44,18 @@ namespace Practice.Domain.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Code", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Code_ProductTemplate_ProductTemplateId",
+                        column: x => x.ProductTemplateId,
+                        principalTable: "ProductTemplate",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                    table.ForeignKey(
+                        name: "FK_Code_Store_StoreId",
+                        column: x => x.StoreId,
+                        principalTable: "Store",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -41,13 +77,23 @@ namespace Practice.Domain.Migrations
                         column: x => x.CodeId,
                         principalTable: "Code",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Attribute_CodeId",
                 table: "Attribute",
                 column: "CodeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Code_ProductTemplateId",
+                table: "Code",
+                column: "ProductTemplateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Code_StoreId",
+                table: "Code",
+                column: "StoreId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -57,6 +103,12 @@ namespace Practice.Domain.Migrations
 
             migrationBuilder.DropTable(
                 name: "Code");
+
+            migrationBuilder.DropTable(
+                name: "ProductTemplate");
+
+            migrationBuilder.DropTable(
+                name: "Store");
         }
     }
 }

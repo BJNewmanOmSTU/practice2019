@@ -23,8 +23,10 @@
     <Compile Remove="Migrations\20190701051915_Added CodeId to Store and ProducTemplate.Designer.cs" />
     <Compile Remove="Migrations\20190701052437_Added CodeId to Store and ProducTemplate.cs" />
     <Compile Remove="Migrations\20190701052437_Added CodeId to Store and ProducTemplate.Designer.cs" />
-    <Compile Remove="Migrations\20190710032734_Added_navigation_field_to_Store_and_ProductTemplate.cs" />
-    <Compile Remove="Migrations\20190710032734_Added_navigation_field_to_Store_and_ProductTemplate.Designer.cs" />
+    <Compile Remove="Migrations\20190703110446_Added_CodeId_in_Stores_and_ProductTemplate.cs" />
+    <Compile Remove="Migrations\20190703110446_Added_CodeId_in_Stores_and_ProductTemplate.Designer.cs" />
+    <Compile Remove="Migrations\20190708035638_Added_SearchStore_for_filtering.cs" />
+    <Compile Remove="Migrations\20190708035638_Added_SearchStore_for_filtering.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,8 +40,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

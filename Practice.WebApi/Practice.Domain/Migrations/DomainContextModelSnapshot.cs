@@ -38,7 +38,7 @@ namespace Practice.Domain.Migrations
 
                     b.HasIndex("CodeId");
 
-                    b.ToTable("Attributes");
+                    b.ToTable("Attribute");
                 });
 
             modelBuilder.Entity("Practice.Domain.Code", b =>
@@ -59,15 +59,11 @@ namespace Practice.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductTemplateId")
-                        .IsUnique()
-                        .HasFilter("[ProductTemplateId] IS NOT NULL");
+                    b.HasIndex("ProductTemplateId");
 
-                    b.HasIndex("StoreId")
-                        .IsUnique()
-                        .HasFilter("[StoreId] IS NOT NULL");
+                    b.HasIndex("StoreId");
 
-                    b.ToTable("Codes");
+                    b.ToTable("Code");
                 });
 
             modelBuilder.Entity("Practice.Domain.ProductTemplate", b =>
@@ -76,11 +72,11 @@ namespace Practice.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(32);
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductTemplates");
+                    b.ToTable("ProductTemplate");
                 });
 
             modelBuilder.Entity("Practice.Domain.Store", b =>
@@ -89,11 +85,11 @@ namespace Practice.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(32);
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stores");
+                    b.ToTable("Store");
                 });
 
             modelBuilder.Entity("Practice.Domain.Attribute", b =>
@@ -105,13 +101,13 @@ namespace Practice.Domain.Migrations
 
             modelBuilder.Entity("Practice.Domain.Code", b =>
                 {
-                    b.HasOne("Practice.Domain.ProductTemplate")
-                        .WithOne("Code")
-                        .HasForeignKey("Practice.Domain.Code", "ProductTemplateId");
+                    b.HasOne("Practice.Domain.ProductTemplate", "ProductTemplate")
+                        .WithMany("Codes")
+                        .HasForeignKey("ProductTemplateId");
 
-                    b.HasOne("Practice.Domain.Store")
-                        .WithOne("Code")
-                        .HasForeignKey("Practice.Domain.Code", "StoreId");
+                    b.HasOne("Practice.Domain.Store", "Store")
+                        .WithMany("Codes")
+                        .HasForeignKey("StoreId");
                 });
 #pragma warning restore 612, 618
         }
