@@ -23,6 +23,8 @@
     <Compile Remove="Migrations\20190701051915_Added CodeId to Store and ProducTemplate.Designer.cs" />
     <Compile Remove="Migrations\20190701052437_Added CodeId to Store and ProducTemplate.cs" />
     <Compile Remove="Migrations\20190701052437_Added CodeId to Store and ProducTemplate.Designer.cs" />
+    <Compile Remove="Migrations\20190710032734_Added_navigation_field_to_Store_and_ProductTemplate.cs" />
+    <Compile Remove="Migrations\20190710032734_Added_navigation_field_to_Store_and_ProductTemplate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
