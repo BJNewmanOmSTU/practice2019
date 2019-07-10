@@ -18,7 +18,7 @@ namespace Practice.WebApi.Services
 	/// </summary>
 	public class StoreService : IStoreService<Store>
 	{
-		private DbSet<Store> _store;
+		private DbSet<Store> _stores;
 		private IContractMapper _mapper;
 
 		/// <summary>
@@ -28,7 +28,7 @@ namespace Practice.WebApi.Services
 		/// <param name="mapper">Mapper для сопоставления модели с контрактом</param>
 		public StoreService(DomainContext dc, ContractMapper mapper)
 		{
-			_store = dc.Set<Store>();
+			_stores = dc.Set<Store>();
 			_mapper = mapper;
 		}
 
@@ -38,9 +38,9 @@ namespace Practice.WebApi.Services
 		/// <param name="id">Идентификатор требуемого элемента</param>
 		/// <returns>Возвращает элемент с заданным идентификатором
 		/// или ошибку если элемент не существует</returns>
-		public StoreContractModel GetStore(string id)
+		public StoreContract GetStore(string id)
 		{
-		    Store store = _store.Find(id);
+		    Store store = _stores.Find(id);
 
 			if (store == null)
 			{
@@ -48,7 +48,7 @@ namespace Practice.WebApi.Services
 			}
 			else
 			{
-				return _mapper.Map<Store, StoreContractModel>(store);
+				return _mapper.Map<Store, StoreContract>(store);
 			}
 		}
 
@@ -58,9 +58,9 @@ namespace Practice.WebApi.Services
 		/// <param name="filter">Параметры запроса.</param>
 		/// <returns>Возвращает весь список элементов или 
 		/// отфильтрованный по параметрам filter</returns>
-		public List<StoreContractModel> GetListStores(StoreFilterModel filter)
+		public List<StoreContract> GetListStores(StoreFilter filter)
 		{
-			var stores = _store.AsQueryable();
+			var stores = _stores.AsQueryable();
 
 			if (filter != null)
 			{
@@ -81,16 +81,10 @@ namespace Practice.WebApi.Services
 				{
 					stores = stores.Where(x => x.Name.ToLower().Contains(filter.Search.ToLower()));
 				}
-
-				//Если в stores пусто то выбрасывается исключение
-				if (!stores.Any())
-				{
-					throw new StoreNotFoundException("Данные соответствующие данному запросу не найдены!");
-				}
 			}
 
 			//Преобращование из Store в StoreContractModel
-			return _mapper.Map<List<Store>, List<StoreContractModel>>(stores.ToList());
+			return _mapper.Map<List<Store>, List<StoreContract>>(stores.ToList());
 		}
 	}
 }

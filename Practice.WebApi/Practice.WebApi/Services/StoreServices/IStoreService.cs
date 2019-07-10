@@ -19,7 +19,7 @@ namespace Practice.WebApi.Services
 		/// <param name="id">Идентификатор требуемого элемента</param>
 		/// <returns>Возвращает элемент с заданным идентификатором
 		/// или ошибку если элемент не существует</returns>
-		StoreContractModel GetStore(string id);
+		StoreContract GetStore(string id);
 
 		/// <summary>
 		/// Функция получения списка элементов Stores
@@ -27,6 +27,6 @@ namespace Practice.WebApi.Services
 		/// <param name="filter">Параметры запроса.</param>
 		/// <returns>Возвращает весь список элементов или 
 		/// отфильтрованный по параметрам filter</returns>
-		List<StoreContractModel> GetListStores(StoreFilterModel searchStore);
+		List<StoreContract> GetListStores(StoreFilter filter);
 	}
 }

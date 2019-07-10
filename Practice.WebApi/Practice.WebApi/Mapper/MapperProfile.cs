@@ -11,7 +11,7 @@ namespace Practice.WebApi.Mapper
     {
         public MapperProfile()
         {
-			CreateMap<Store, StoreContractModel>();
+			CreateMap<Store, StoreContract>();
         }
     }
 }

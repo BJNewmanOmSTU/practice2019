@@ -8,7 +8,7 @@ namespace Practice.Domain
 	/// <summary>
 	/// Класс для фильтрации по полям Store
 	/// </summary>
-	public class StoreFilterModel
+	public class StoreFilter
 	{
 		/// <summary>
 		/// Параметр для поиска по начальным символам названия Store

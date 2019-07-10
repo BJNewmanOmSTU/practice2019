@@ -14,17 +14,14 @@ namespace Practice.WebApi.Controllers
 	[Route("stores")]
 	public class StoresController : AController
 	{
-		DbSet<Store> _stores;
-		IStoreService<Store> _storeService;
+		private IStoreService<Store> _storeService;
 
 		/// <summary>
 		/// Конструктор контроллера StoresController
 		/// </summary>
-		/// <param name="db">Контекст базы данных</param>
 		/// <param name="storeService">Сервис для работы со Store</param>
-		public StoresController(DomainContext db, StoreService storeService)
+		public StoresController(StoreService storeService)
 		{
-			_stores = db.Set<Store>();
 			_storeService = storeService;
 		}
 
@@ -36,7 +33,7 @@ namespace Practice.WebApi.Controllers
 		/// или отфильтрованный по параметрам,
 		/// если элементы не найдены возвращает ошибку</returns>
 		[HttpGet]
-		public ActionResult<List<StoreContractModel>> GetListStores(StoreFilterModel filter)
+		public ActionResult<List<StoreContract>> GetListStores(StoreFilter filter)
 		{			
 			return _storeService.GetListStores(filter);			
 		}
@@ -50,7 +47,7 @@ namespace Practice.WebApi.Controllers
 		/// соответствующий данному идентификатору
 		/// или ошибку поиска</returns>
 		[HttpGet("{id}")]
-		public ActionResult<StoreContractModel> Get(string id)
+		public ActionResult<StoreContract> Get(string id)
 		{		
 			return _storeService.GetStore(id);			
 		}

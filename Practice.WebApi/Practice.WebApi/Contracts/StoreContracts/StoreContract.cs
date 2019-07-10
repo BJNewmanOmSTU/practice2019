@@ -9,7 +9,7 @@ namespace Practice.WebApi.Contracts.StoreContracts
 	/// <summary>
 	/// Модель контракта Store для выдачи данных пользователю
 	/// </summary>
-	public class StoreContractModel
+	public class StoreContract
 	{
 		/// <summary>
 		/// Идентификатор магазина
