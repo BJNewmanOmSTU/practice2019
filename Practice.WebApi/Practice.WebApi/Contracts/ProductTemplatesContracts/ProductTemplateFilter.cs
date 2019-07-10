@@ -8,7 +8,7 @@ namespace Practice.WebApi.Contracts.ProductTemplatesContracts
 	/// <summary>
 	/// Класс для фильтрации по полям ProductTemplate
 	/// </summary>
-	public class ProductTemplateFilterModel
+	public class ProductTemplateFilter
 	{
 		/// <summary>
 		/// Параметр для поиска по начальным символам названия ProductTemplate

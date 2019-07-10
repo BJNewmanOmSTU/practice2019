@@ -20,7 +20,7 @@ namespace Practice.WebApi.Services.ProductTemplatesServices
 		/// <param name="id">Идентификатор требуемого элемента</param>
 		/// <returns>Возвращает элемент с заданным идентификатором
 		/// или ошибку если элемент не существует</returns>
-		ProductTemplateContractModel GetProductTemplate(string id);
+		ProductTemplateContract GetProductTemplate(string id);
 
 		/// <summary>
 		/// Функция получения списка элементов ProductTemplate
@@ -28,6 +28,6 @@ namespace Practice.WebApi.Services.ProductTemplatesServices
 		/// <param name="filter">Параметры запроса</param>
 		/// <returns>Возвращает весь список элементов или 
 		/// отфильтрованный по параметрам filter</returns>
-		List<ProductTemplateContractModel> GetListProductTemplates(ProductTemplateFilterModel filter);
+		List<ProductTemplateContract> GetListProductTemplates(ProductTemplateFilter filter);
 	}
 }

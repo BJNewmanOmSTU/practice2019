@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace Practice.WebApi.Contracts.ProductTemplatesContracts
 {
-	public class ProductTemplateContractModel
+	/// <summary>
+	/// Модель контракта Продукта для выдачи данных пользователю
+	/// </summary>
+	public class ProductTemplateContract
 	{
 		/// <summary>
 		/// Идентификатор ProductTemplate

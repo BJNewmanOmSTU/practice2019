@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Practice.Domain;
 using Practice.WebApi.Contracts.ProductTemplatesContracts;
-using System;
+
 
 namespace Practice.WebApi.Mapper
 {
@@ -11,7 +9,7 @@ namespace Practice.WebApi.Mapper
     {
         public MapperProfile()
         {
-			CreateMap<ProductTemplate, ProductTemplateContractModel>();
+			CreateMap<ProductTemplate, ProductTemplateContract>();
 		}
     }
 }

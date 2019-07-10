@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Practice.Domain;
 using Practice.WebApi.Contracts.ProductTemplatesContracts;
@@ -26,7 +24,7 @@ namespace Practice.WebApi.Services.ProductTemplatesServices
 		/// <param name="id">Идентификатор требуемого элемента</param>
 		/// <returns>Возвращает элемент с заданным идентификатором
 		/// или ошибку если элемент не существует</returns>
-		public ProductTemplateContractModel GetProductTemplate(string id)
+		public ProductTemplateContract GetProductTemplate(string id)
 		{
 			ProductTemplate productTemplates = _productTemplates.Find(id);
 
@@ -37,7 +35,7 @@ namespace Practice.WebApi.Services.ProductTemplatesServices
 			else
 			{
 				//Преобращование из ProductTemplate в ProductTemplateContractModel
-				return _mapper.Map<ProductTemplate, ProductTemplateContractModel>(productTemplates);
+				return _mapper.Map<ProductTemplate, ProductTemplateContract>(productTemplates);
 			}
 		}
 
@@ -47,7 +45,7 @@ namespace Practice.WebApi.Services.ProductTemplatesServices
 		/// <param name="filter">Параметры запроса.</param>
 		/// <returns>Возвращает весь список элементов или 
 		/// отфильтрованный по параметрам filter</returns>
-		public List<ProductTemplateContractModel> GetListProductTemplates(ProductTemplateFilterModel filter)
+		public List<ProductTemplateContract> GetListProductTemplates(ProductTemplateFilter filter)
 		{
 			var productTemplates = _productTemplates.AsQueryable();
 
@@ -70,16 +68,10 @@ namespace Practice.WebApi.Services.ProductTemplatesServices
 				{
 					productTemplates = productTemplates.Where(x => x.Name.ToLower().Contains(filter.Search.ToLower()));
 				}
-
-				//Если в stores пусто то выбрасывается исключение
-				if (!productTemplates.Any())
-				{
-					throw new NotFoundException("Элементы соответствующие данному запросу не найдены!");
-				}
 			}
 
-			//Преобращование из ProductTemplate в ProductTemplateContractModel
-			return _mapper.Map<List<ProductTemplate>, List<ProductTemplateContractModel>>(productTemplates.ToList());
+			//Преобразование из ProductTemplate в ProductTemplateContractModel
+			return _mapper.Map<List<ProductTemplate>, List<ProductTemplateContract>>(productTemplates.ToList());
 		}
 	}
 }

@@ -13,12 +13,14 @@ namespace Practice.WebApi.Controllers
 	[Route("productTemplates")]
 	public class ProductTemplatesController : AController
 	{
-		DbSet<ProductTemplate> _productTemplates;
-		IProductTemplateService _productTemplateService;
+		private IProductTemplateService _productTemplateService;
 
-		public ProductTemplatesController(DomainContext dc, ProductTemplateService productTemplateService)
+		/// <summary>
+		/// Конструктор контроллера ProductTemplatesController
+		/// </summary>
+		/// <param name="productTemplateService">Сервис для работы с моделью ProductTemplate</param>
+		public ProductTemplatesController(ProductTemplateService productTemplateService)
 		{
-			_productTemplates = dc.Set<ProductTemplate>();
 			_productTemplateService = productTemplateService;
 		}
 
@@ -30,7 +32,7 @@ namespace Practice.WebApi.Controllers
 		/// или отфильтрованный по параметрам,
 		/// если элементы не найдены возвращает ошибку</returns>
 		[HttpGet]
-		public ActionResult<List<ProductTemplateContractModel>> GetListProductTemplates(ProductTemplateFilterModel filter)
+		public ActionResult<List<ProductTemplateContract>> GetListProductTemplates(ProductTemplateFilter filter)
 		{
 			return _productTemplateService.GetListProductTemplates(filter);
 		}
@@ -44,7 +46,7 @@ namespace Practice.WebApi.Controllers
 		/// соответствующий данному идентификатору
 		/// или ошибку поиска</returns>
 		[HttpGet("{id}")]
-		public ActionResult<ProductTemplateContractModel> GetProductTemplate(string id)
+		public ActionResult<ProductTemplateContract> GetProductTemplate(string id)
 		{
 			return _productTemplateService.GetProductTemplate(id);
 		}
