@@ -7,7 +7,7 @@ using Practice.Domain;
 namespace Practice.WebApi.Contracts.StoreContracts
 {
 	/// <summary>
-	/// Модель контракта Store для выдачи данных пользователю
+	/// Модель контракта Магазина для выдачи данных пользователю
 	/// </summary>
 	public class StoreContract
 	{

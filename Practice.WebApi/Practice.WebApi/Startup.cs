@@ -12,6 +12,7 @@ using Practice.Domain;
 using Practice.WebApi.Services;
 using Practice.WebApi.Services.ProductTemplatesServices;
 using Practice.WebApi.Mapper;
+using Practice.WebApi.Services.CodeServices;
 
 namespace Practice.WebApi
 {
@@ -36,6 +37,7 @@ namespace Practice.WebApi
 			services.AddTransient<StoreService>();
 			services.AddTransient<ContractMapper>();
 			services.AddTransient<ProductTemplateService>();
+			services.AddTransient<CodeService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

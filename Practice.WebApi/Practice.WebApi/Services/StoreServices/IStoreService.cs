@@ -11,7 +11,7 @@ namespace Practice.WebApi.Services
 	/// запросов к модели Store
 	/// </summary>
 	/// <typeparam name="Store">Модель Store</typeparam>
-	public interface IStoreService<Store>
+	public interface IStoreService
 	{
 		/// <summary>
 		/// Функция получения элемента по идентификатору
