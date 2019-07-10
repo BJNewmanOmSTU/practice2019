@@ -14,11 +14,7 @@ namespace Practice.Domain
 		/// </summary>
 		public string Id { get; set; }
 
-<<<<<<< HEAD
-		/// <summary>
-=======
         /// <summary>
->>>>>>> P2019-26_Add_endpoint_stores
 		/// Название магазина
 		/// </summary>
 		public string Name { get; set; }
