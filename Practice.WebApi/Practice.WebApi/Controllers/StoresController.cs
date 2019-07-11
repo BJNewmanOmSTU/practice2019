@@ -5,6 +5,9 @@ using Practice.WebApi.Contracts.StoreContracts;
 using Practice.WebApi.Services;
 namespace Practice.WebApi.Controllers
 {
+	/// <summary>
+	/// Контроллер для работы с Магазинами
+	/// </summary>
 	[Route("stores")]
 	public class StoresController : AController
 	{

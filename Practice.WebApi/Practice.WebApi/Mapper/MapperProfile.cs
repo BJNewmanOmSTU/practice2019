@@ -14,9 +14,12 @@ namespace Practice.WebApi.Mapper
 			CreateMap<StoreContract, Store >();
 			CreateMap<ProductTemplate, ProductTemplateContract>();
 			CreateMap<ProductTemplateContract, ProductTemplate>();
+
 			CreateMap<Code, CodeContract>()
 				.ForMember(x => x.ProductTemplateTitle, x => x.MapFrom(m => m.ProductTemplate.Name))
 				.ForMember(x => x.StoreName, x => x.MapFrom(m => m.Store.Name));
+
+			CreateMap<CodeCreateContract, Code>();
 		}
     }
 }

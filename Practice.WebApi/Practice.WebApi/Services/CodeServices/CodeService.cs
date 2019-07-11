@@ -5,6 +5,7 @@ using Practice.WebApi.Contracts.ProductTemplatesContracts;
 using Practice.WebApi.Contracts.StoreContracts;
 using Practice.WebApi.Mapper;
 using Practice.WebApi.Services.ProductTemplatesServices;
+using System.Collections.Generic;
 
 namespace Practice.WebApi.Services.CodeServices
 {
@@ -15,7 +16,7 @@ namespace Practice.WebApi.Services.CodeServices
 	{
 		private DbSet<Code> _codes;
 		private IContractMapper _mapper;
-		private DomainContext _dc;
+		private DomainContext _domainContext;
 
 		private IStoreService _storeService;
 		private IProductTemplateService _productTemplateService;
@@ -27,11 +28,11 @@ namespace Practice.WebApi.Services.CodeServices
 		/// <param name="mapper">Mapper для сопоставления модели с контрактом</param>
 		/// <param name="storeService">Сервис для работы с моделью Store</param>
 		/// <param name="productTemplateService">Сервис для работы с моделью ProductTemplate</param>
-		public CodeService(DomainContext dc, ContractMapper mapper, StoreService storeService, ProductTemplateService productTemplateService)
+		public CodeService(DomainContext domainContext, ContractMapper mapper, StoreService storeService, ProductTemplateService productTemplateService)
 		{
-			_codes = dc.Set<Code>();
+			_codes = domainContext.Set<Code>();
 			_mapper = mapper;
-			_dc = dc;
+			_domainContext = domainContext;
 			_storeService = storeService;
 			_productTemplateService = productTemplateService;
 		}
@@ -41,25 +42,26 @@ namespace Practice.WebApi.Services.CodeServices
 		/// </summary>
 		/// <param name="code">Код который нужно создать</param>
 		/// <returns>Возвращает созданный Код в виде контракта</returns>
-		public CodeContract CreateCode(Code code)
+		public CodeContract CreateCode(CodeCreateContract newCode)
 		{
-			if(code != null)
+			Code code;
+			if (newCode != null)
 			{
-				//Данная процедура нужна для формирования поля StoreName
-				code.Store = _mapper.Map<StoreContract, Store>(_storeService.GetStore(code.StoreId));
+				//Проверка существования магазина и шаблона продукта
+				_storeService.GetStore(newCode.StoreId);
+				_productTemplateService.GetProductTemplate(newCode.ProductTemplateId);
 
-				//Данная процедура нужна для формирования поля ProductTemplateTitle
-				code.ProductTemplate = _mapper.Map<ProductTemplateContract, ProductTemplate>(_productTemplateService.GetProductTemplate(code.ProductTemplateId));
+				code = _mapper.Map<CodeCreateContract, Code>(newCode);
 				_codes.Add(code);
-				_dc.SaveChanges();
+				_domainContext.SaveChanges();
 			}
 			else
 			{
-				throw new DatabaseException("Ошибка при создании записи");
+				throw new ModelValidationExeption("Ошибка при создании записи");
 			}
 
 			//Преобразование из Code в CodeContract
-			return _mapper.Map<Code, CodeContract>(code);
+			return _mapper.Map<Code, CodeContract>(_codes.Include(p => p.ProductTemplate).Include(p => p.Store).ToListAsync().Result.Find(x => x.Id == code.Id));
 		}
 	}
 }
