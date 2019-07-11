@@ -61,7 +61,7 @@ namespace Practice.WebApi.Services.CodeServices
 			}
 
 			//Преобразование из Code в CodeContract
-			return _mapper.Map<Code, CodeContract>(_codes.Include(p => p.ProductTemplate).Include(p => p.Store).ToListAsync().Result.Find(x => x.Id == code.Id));
+			return _mapper.Map<Code, CodeContract>(code);
 		}
 	}
 }

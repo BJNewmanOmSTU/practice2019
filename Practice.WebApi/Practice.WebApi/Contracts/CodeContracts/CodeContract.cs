@@ -31,8 +31,10 @@ namespace Practice.WebApi.Contracts.CodeContracts
 		/// </summary>
 		public string StoreName { get; set; }
 
-
-		public string Code { get; set; }
+		/// <summary>
+		/// Сам код 
+		/// </summary>
+		public string RedeemCode { get; set; }
 
 		/// <summary>
 		/// Статус кода
@@ -40,7 +42,7 @@ namespace Practice.WebApi.Contracts.CodeContracts
 		public string Status { get; set; }
 
 		/// <summary>
-		/// Номер заказа
+		/// Номер транзакции
 		/// </summary>
 		public string OrderUniqNumber { get; set; }
 
@@ -49,12 +51,12 @@ namespace Practice.WebApi.Contracts.CodeContracts
 		/// </summary>
 		public bool Removed { get; set; }
 
+		/// <summary>
+		/// Конструктор контракта
+		/// </summary>
 		public CodeContract()
 		{
-			Code = Identity.NewId();
-			Status = "Active";
-			OrderUniqNumber = Identity.NewId();
-			Removed = false;
+			RedeemCode = Identity.NewId();
 		}
 	}
 }

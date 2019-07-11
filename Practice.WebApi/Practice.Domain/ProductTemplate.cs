@@ -5,17 +5,17 @@ using System.Text;
 namespace Practice.Domain
 {
 	/// <summary>
-	/// Модель ProductTemolate. 
+	/// Модель Шаблона продукта. 
 	/// </summary>
 	public class ProductTemplate
 	{
 		/// <summary>
-		/// Идентификатор ProductTemplate
+		/// Идентификатор Шаблона продукта
 		/// </summary>
 		public string Id { get; set; }
 
 		/// <summary>
-		/// Название ProductTemplate
+		/// Название Шаблона продукта
 		/// </summary>
 		public string Name { get; set; }
 

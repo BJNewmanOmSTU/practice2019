@@ -47,6 +47,9 @@ namespace Practice.WebApi.Contracts.CodeContracts
 		/// </summary>
 		public string Symbol { get; set; }
 
+		/// <summary>
+		/// Конструктор контракта
+		/// </summary>
 		public CodeCreateContract()
 		{
 			Id = Identity.NewId();
