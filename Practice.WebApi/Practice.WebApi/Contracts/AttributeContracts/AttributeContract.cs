@@ -16,7 +16,6 @@ namespace Practice.WebApi.Contracts.AttributeContracts
 		/// <summary>
 		/// Значение аттрибута
 		/// </summary>
-		[Required(ErrorMessage = "Требуется объект, представляющий собой значение атрибута")]
 		public string Value { get; set; }
 
 		/// <summary>

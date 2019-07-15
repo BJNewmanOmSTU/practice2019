@@ -3,11 +3,6 @@ using Practice.Domain;
 using Practice.WebApi.Contracts.CodeContracts;
 using Practice.WebApi.Mapper;
 using Practice.WebApi.Services.ProductTemplatesServices;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations;
 
 namespace Practice.WebApi.Services.CodeServices
 {
@@ -51,15 +46,6 @@ namespace Practice.WebApi.Services.CodeServices
 
 			if (newCode != null)
 			{
-				if (newCode.ProductTemplateId == null)
-				{
-					throw new ModelValidationExсeption("Не верный идентификатор Шаблона продукта!");
-				}
-				if (newCode.StoreId == null)
-				{
-					throw new ModelValidationExсeption("Не верный идентификатор Магазина!");
-				}
-
 				//Проверка существования магазина и шаблона продукта
 				productTemplate = _productTemplates.Find(newCode.ProductTemplateId);
 				if (productTemplate == null)
