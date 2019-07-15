@@ -44,7 +44,7 @@ namespace Practice.WebApi.Services
 
 			if (store == null)
 			{
-				throw new ModelValidationExeption($"Магазин с идентификатором '{id}' не найден!!!");
+				throw new NotFoundException($"Магазин с идентификатором '{id}' не найден!!!");
 			}
 			else
 			{

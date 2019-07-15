@@ -35,9 +35,17 @@ namespace Practice.WebApi.Controllers
 		[HttpPost]
 		public ActionResult<CodeContract> Post([FromBody] CodeCreateContract code)
 		{
-			return _codeService.CreateCode(code);
+			if (ModelState.IsValid)
+			{ 
+				return _codeService.CreateCode(code);
+			}
+			else
+			{
+				//Возвращает список ошибок возникших при валидации входной модели
+				return BadRequest(ModelState.Values.SelectMany(m => m.Errors)
+								 .Select(e => e.ErrorMessage)
+								 .ToList());
+			}
 		}
-
-		
 	}
 }

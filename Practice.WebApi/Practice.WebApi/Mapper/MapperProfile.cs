@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Practice.Domain;
+using Practice.WebApi.Contracts.AttributeContracts;
 using Practice.WebApi.Contracts.CodeContracts;
 using Practice.WebApi.Contracts.ProductTemplatesContracts;
 using Practice.WebApi.Contracts.StoreContracts;
@@ -7,8 +9,8 @@ using Practice.WebApi.Contracts.StoreContracts;
 namespace Practice.WebApi.Mapper
 {
     public class MapperProfile : Profile
-    {
-        public MapperProfile()
+    {		
+		public MapperProfile()
         {
 			CreateMap<Store, StoreContract>();
 			CreateMap<StoreContract, Store >();
@@ -16,10 +18,10 @@ namespace Practice.WebApi.Mapper
 			CreateMap<ProductTemplateContract, ProductTemplate>();
 
 			CreateMap<Code, CodeContract>()
-				.ForMember(x => x.ProductTemplateTitle, x => x.MapFrom(m => m.ProductTemplate.Name))
-				.ForMember(x => x.StoreName, x => x.MapFrom(m => m.Store.Name));
-
+				.ForMember(x => x.Status, x => x.MapFrom(m => m.Status.ToString()));
 			CreateMap<CodeCreateContract, Code>();
+
+			CreateMap<AttributeContract, Attribute>();
 		}
     }
 }

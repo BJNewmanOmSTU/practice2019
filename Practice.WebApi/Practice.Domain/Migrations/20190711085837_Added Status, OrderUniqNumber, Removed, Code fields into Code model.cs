@@ -20,7 +20,7 @@ namespace Practice.Domain.Migrations
             migrationBuilder.AddColumn<string>(
                 name: "Status",
                 table: "Code",
-                nullable: true);
+                nullable: false);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

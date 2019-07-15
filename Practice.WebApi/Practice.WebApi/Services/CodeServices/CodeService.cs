@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Practice.Domain;
 using Practice.WebApi.Contracts.CodeContracts;
-using Practice.WebApi.Contracts.ProductTemplatesContracts;
-using Practice.WebApi.Contracts.StoreContracts;
 using Practice.WebApi.Mapper;
 using Practice.WebApi.Services.ProductTemplatesServices;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 
 namespace Practice.WebApi.Services.CodeServices
 {
@@ -15,28 +17,27 @@ namespace Practice.WebApi.Services.CodeServices
 	public class CodeService : ICodeService
 	{
 		private DbSet<Code> _codes;
+		private DbSet<Store> _stores;
+		private DbSet<ProductTemplate> _productTemplates;
+
 		private IContractMapper _mapper;
 		private DomainContext _domainContext;
-
-		private IStoreService _storeService;
-		private IProductTemplateService _productTemplateService;
 
 		/// <summary>
 		/// Конструктор сервиса для работы с Кодами
 		/// </summary>
 		/// <param name="dc">Контекст базы данных</param>
 		/// <param name="mapper">Mapper для сопоставления модели с контрактом</param>
-		/// <param name="storeService">Сервис для работы с моделью Store</param>
-		/// <param name="productTemplateService">Сервис для работы с моделью ProductTemplate</param>
-		public CodeService(DomainContext domainContext, ContractMapper mapper, StoreService storeService, ProductTemplateService productTemplateService)
+		public CodeService(DomainContext domainContext, ContractMapper mapper)
 		{
 			_codes = domainContext.Set<Code>();
+			_stores = domainContext.Set<Store>();
+			_productTemplates = domainContext.Set<ProductTemplate>();
+
 			_mapper = mapper;
 			_domainContext = domainContext;
-			_storeService = storeService;
-			_productTemplateService = productTemplateService;
 		}
-		
+
 		/// <summary>
 		/// Функция создания Кода
 		/// </summary>
@@ -45,11 +46,32 @@ namespace Practice.WebApi.Services.CodeServices
 		public CodeContract CreateCode(CodeCreateContract newCode)
 		{
 			Code code;
+			ProductTemplate productTemplate;
+			Store store;
+
 			if (newCode != null)
 			{
+				if (newCode.ProductTemplateId == null)
+				{
+					throw new ModelValidationExсeption("Не верный идентификатор Шаблона продукта!");
+				}
+				if (newCode.StoreId == null)
+				{
+					throw new ModelValidationExсeption("Не верный идентификатор Магазина!");
+				}
+
 				//Проверка существования магазина и шаблона продукта
-				_storeService.GetStore(newCode.StoreId);
-				_productTemplateService.GetProductTemplate(newCode.ProductTemplateId);
+				productTemplate = _productTemplates.Find(newCode.ProductTemplateId);
+				if (productTemplate == null)
+				{
+					throw new NotFoundException($"Продукт с идентификатором '{newCode.ProductTemplateId}' не найден!");
+				}
+
+				store = _stores.Find(newCode.StoreId);
+				if (store == null)
+				{
+					throw new NotFoundException($"Магазин с идентификатором '{newCode.StoreId}' не найден!");
+				}
 
 				code = _mapper.Map<CodeCreateContract, Code>(newCode);
 				_codes.Add(code);
@@ -57,11 +79,15 @@ namespace Practice.WebApi.Services.CodeServices
 			}
 			else
 			{
-				throw new ModelValidationExeption("Ошибка при создании записи");
+				throw new ModelValidationExсeption("Ошибка при создании записи");
 			}
 
 			//Преобразование из Code в CodeContract
-			return _mapper.Map<Code, CodeContract>(code);
+			CodeContract codeContract = _mapper.Map<Code, CodeContract>(code);
+			codeContract.StoreName = store.Name;
+			codeContract.ProductTemplateTitle = productTemplate.Name;
+
+			return codeContract;
 		}
 	}
 }

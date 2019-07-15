@@ -30,7 +30,7 @@ namespace Practice.WebApi.Services.ProductTemplatesServices
 
 			if(productTemplates == null)
 			{
-				throw new ModelValidationExeption($"Продукт с идентификатором '{id}' не найден!");
+				throw new NotFoundException($"Продукт с идентификатором '{id}' не найден!");
 			}
 			else
 			{

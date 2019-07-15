@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace Practice.WebApi.Services.ProductTemplatesServices
@@ -7,22 +9,26 @@ namespace Practice.WebApi.Services.ProductTemplatesServices
 	/// <summary>
 	/// Определяет ошибку при неверных параметрах модели
 	/// </summary>
-	public class ModelValidationExeption : Exception
+	public class ModelValidationExсeption : Exception
 	{
-		public ModelValidationExeption()
+		private List<ValidationResult> list;
+
+		public ModelValidationExсeption()
 		{
 		}
 
-		public ModelValidationExeption(string message) : base(message)
+		public ModelValidationExсeption(string message) : base(message)
 		{
 		}
 
-		public ModelValidationExeption(string message, Exception innerException) : base(message, innerException)
+		public ModelValidationExсeption(string message, Exception innerException) : base(message, innerException)
 		{
 		}
 
-		protected ModelValidationExeption(SerializationInfo info, StreamingContext context) : base(info, context)
+		protected ModelValidationExсeption(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}
+
+		
 	}
 }

@@ -57,7 +57,7 @@ namespace Practice.Domain
 		/// <summary>
 		/// Статус кода
 		/// </summary>
-		public string Status { get; set; }
+		public StatusEnum Status { get; set; }
 
 		/// <summary>
 		/// Номер заказа
@@ -83,8 +83,17 @@ namespace Practice.Domain
 			Attributes = new List<Attribute>();
 			OrderUniqNumber = Identity.NewId();
 			RedeemCode = Identity.NewId();
-			Status = "Active";
+			Status = StatusEnum.Active;
             Removed = false;
 		}
     }
+
+	/// <summary>
+	/// Список статусов
+	/// </summary>
+	public enum StatusEnum {
+		Active,
+		Redeemed,
+		Completed
+	}
 }
