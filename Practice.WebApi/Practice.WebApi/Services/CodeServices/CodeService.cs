@@ -87,7 +87,7 @@ namespace Practice.WebApi.Services.CodeServices
 
 			if (code == null)
 			{
-				throw new NotFoundException($"Код с идентификатором '{id}' не найден!!!");
+				throw new NotFoundException($"Код с идентификатором '{id}' не найден!");
 			}
 			else
 			{
