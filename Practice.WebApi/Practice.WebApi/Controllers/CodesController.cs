@@ -33,7 +33,7 @@ namespace Practice.WebApi.Controllers
 		/// <param name="code">Объект Кода который нужно создать</param>
 		/// <returns>Возвращает созданный объект</returns>
 		[HttpPost]
-		public ActionResult<CodeContract> Post([FromBody] CodeCreateContract code)
+		public ActionResult<CodeContract> CreateCode([FromBody] CodeCreateContract code)
 		{
 			if (ModelState.IsValid)
 			{ 
