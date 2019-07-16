@@ -3,6 +3,7 @@ using Practice.Domain;
 using Practice.WebApi.Contracts.CodeContracts;
 using Practice.WebApi.Mapper;
 using Practice.WebApi.Services.ProductTemplatesServices;
+using System.Collections.Generic;
 
 namespace Practice.WebApi.Services.CodeServices
 {
@@ -74,6 +75,18 @@ namespace Practice.WebApi.Services.CodeServices
 			codeContract.ProductTemplateTitle = productTemplate.Name;
 
 			return codeContract;
+		}
+
+		/// <summary>
+		/// Функция удаления кодов
+		/// </summary>
+		/// <param name="ids">Строка содержащая список идентификаторов
+		/// разделенными запятой</param>
+		/// <returns>Возвращает список удаленных кодов</returns>
+		List<DeletedCodes> DeleteCodes(string ids)
+		{
+			
+
 		}
 	}
 }

@@ -15,5 +15,13 @@ namespace Practice.WebApi.Services.CodeServices
 		/// <param name="code">Код который нужно создать</param>
 		/// <returns>Возвращает созданный Код в виде контракта</returns>
 		CodeContract CreateCode(CodeCreateContract code);
+
+		/// <summary>
+		/// Функция удаления кодов
+		/// </summary>
+		/// <param name="ids">Строка содержащая список идентификаторов
+		/// разделенными запятой</param>
+		/// <returns>Возвращает список удаленных кодов</returns>
+		List<DeletedCodes> DeleteCodes(string ids);
 	}
 }
