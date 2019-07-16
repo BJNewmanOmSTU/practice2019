@@ -22,6 +22,6 @@ namespace Practice.WebApi.Services.CodeServices
 		/// <param name="ids">Строка содержащая список идентификаторов
 		/// разделенными запятой</param>
 		/// <returns>Возвращает список удаленных кодов</returns>
-		List<DeletedCodes> DeleteCodes(string ids);
+		DeletedCodes DeleteCodes(string ids);
 	}
 }

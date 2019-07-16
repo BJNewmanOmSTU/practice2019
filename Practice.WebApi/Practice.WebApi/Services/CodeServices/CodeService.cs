@@ -4,6 +4,7 @@ using Practice.WebApi.Contracts.CodeContracts;
 using Practice.WebApi.Mapper;
 using Practice.WebApi.Services.ProductTemplatesServices;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Practice.WebApi.Services.CodeServices
 {
@@ -83,10 +84,25 @@ namespace Practice.WebApi.Services.CodeServices
 		/// <param name="ids">Строка содержащая список идентификаторов
 		/// разделенными запятой</param>
 		/// <returns>Возвращает список удаленных кодов</returns>
-		List<DeletedCodes> DeleteCodes(string ids)
+		public DeletedCodes DeleteCodes(string ids)
 		{
-			
+			List<string> codesIds = ids.Split(",").ToList();
+			Code code;
+			DeletedCodes deletedCodes = new DeletedCodes();
 
+			foreach (string id in codesIds)
+			{
+				code = _codes.Find(id);
+
+				if (code != null)
+				{
+					_codes.Remove(code);
+					_domainContext.SaveChanges();
+					deletedCodes.Ids.Add(id);
+				}
+			}
+
+			return deletedCodes;
 		}
 	}
 }
