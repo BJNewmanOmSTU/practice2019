@@ -15,5 +15,11 @@ namespace Practice.WebApi.Services.CodeServices
 		/// <param name="code">Код который нужно создать</param>
 		/// <returns>Возвращает созданный Код в виде контракта</returns>
 		CodeContract CreateCode(CodeCreateContract code);
+
+		/// <summary>
+		/// Функция получения списка кодов
+		/// </summary>
+		/// <returns>Возвращает список кодов</returns>
+		List<CodeContract> GetListCodes();
 	}
 }

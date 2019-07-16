@@ -3,6 +3,8 @@ using Practice.Domain;
 using Practice.WebApi.Contracts.CodeContracts;
 using Practice.WebApi.Mapper;
 using Practice.WebApi.Services.ProductTemplatesServices;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Practice.WebApi.Services.CodeServices
 {
@@ -74,6 +76,20 @@ namespace Practice.WebApi.Services.CodeServices
 			codeContract.ProductTemplateTitle = productTemplate.Name;
 
 			return codeContract;
+		}
+
+		/// <summary>
+		/// Функция получения списка кодов
+		/// </summary>
+		/// <returns>Возвращает список кодов</returns>
+		public List<CodeContract> GetListCodes()
+		{
+			List<CodeContract> codes = _mapper.Map<List<Code>, List<CodeContract>>(_codes.ToList());
+			foreach(var code in codes)
+			{
+				
+			}
+			return codes;
 		}
 	}
 }
