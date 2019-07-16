@@ -20,6 +20,6 @@ namespace Practice.WebApi.Services.CodeServices
 		/// Функция получения списка кодов
 		/// </summary>
 		/// <returns>Возвращает список кодов</returns>
-		List<CodeContract> GetListCodes();
+		List<CodeContract> GetListCodes(CodeFilter filter);
 	}
 }

@@ -82,16 +82,39 @@ namespace Practice.WebApi.Services.CodeServices
 		/// Функция получения списка кодов
 		/// </summary>
 		/// <returns>Возвращает список кодов</returns>
-		public List<CodeContract> GetListCodes()
+		public List<CodeContract> GetListCodes(CodeFilter filter)
 		{
-			List<CodeContract> codes = _mapper.Map<List<Code>, List<CodeContract>>(_codes.ToList());
-			foreach(var code in codes)
+			var codes = _codes.AsQueryable();
+
+			if (filter != null)
+			{
+				if (!string.IsNullOrEmpty(filter.ProductTemplateId))
+				{
+					codes = codes.Where(x => x.ProductTemplateId == filter.ProductTemplateId);
+				}
+				if (!string.IsNullOrEmpty(filter.SellSource))
+				{
+					codes = codes.Where(x => x.SellSource == filter.SellSource);
+				}
+				if (!string.IsNullOrEmpty(filter.Status))
+				{
+					codes = codes.Where(x => x.Status.ToString() == filter.Status);
+				}
+				if (!string.IsNullOrEmpty(filter.StoreId))
+				{
+					codes = codes.Where(x => x.StoreId == filter.StoreId);
+				}
+			}
+
+			List<CodeContract> codeContracts = _mapper.Map<List<Code>, List<CodeContract>>(codes.ToList());
+
+			foreach (var code in codeContracts)
 			{
 				code.ProductTemplateTitle = _productTemplates.Find(_codes.Find(code.Id).ProductTemplateId).Name;
 				code.StoreName = _stores.Find(_codes.Find(code.Id).StoreId).Name;
 			}
 
-			return codes;
+			return codeContracts;
 		}
 	}
 }

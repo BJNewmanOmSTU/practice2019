@@ -49,13 +49,14 @@ namespace Practice.WebApi.Controllers
 		}
 
 		/// <summary>
-		/// Get метод для получения списка кодов
+		/// Get метод для получения списка кодов (если без параметров),
+		/// иначе отфильтрованный по заданным полям
 		/// </summary>
 		/// <returns>Возвращает список кодов</returns>
 		[HttpGet]
-		public ActionResult<List<CodeContract>> GetListCodes()
+		public ActionResult<List<CodeContract>> GetListCodes(CodeFilter filter)
 		{
-			return _codeService.GetListCodes();
+			return _codeService.GetListCodes(filter);
 		}
 	}
 }
