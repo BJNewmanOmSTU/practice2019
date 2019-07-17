@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Practice.Domain;
 
 namespace Practice.Domain.Migrations
 {
     [DbContext(typeof(DomainContext))]
-    partial class DomainContextModelSnapshot : ModelSnapshot
+    [Migration("20190711091604_Added Code field into Code model")]
+    partial class AddedCodefieldintoCodemodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,17 +55,17 @@ namespace Practice.Domain.Migrations
 
                     b.Property<string>("ProductTemplateId");
 
-                    b.Property<string>("RedeemCode");
-
                     b.Property<bool>("Removed");
 
                     b.Property<string>("SellSource");
 
-                    b.Property<int>("Status");
+                    b.Property<string>("Status");
 
                     b.Property<string>("StoreId");
 
                     b.Property<string>("Symbol");
+
+                    b.Property<string>("code");
 
                     b.HasKey("Id");
 

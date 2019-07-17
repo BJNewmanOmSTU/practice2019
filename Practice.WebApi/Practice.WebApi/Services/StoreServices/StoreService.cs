@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Practice.Domain;
 using Practice.WebApi.Contracts.StoreContracts;
 using Practice.WebApi.Mapper;
-using Practice.WebApi.Services.StoreServices;
+using Practice.WebApi.Services.ProductTemplatesServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace Practice.WebApi.Services
 	/// <summary>
 	/// Сервис для работы с моделью Store
 	/// </summary>
-	public class StoreService : IStoreService<Store>
+	public class StoreService : IStoreService
 	{
 		private DbSet<Store> _stores;
 		private IContractMapper _mapper;
@@ -44,7 +44,7 @@ namespace Practice.WebApi.Services
 
 			if (store == null)
 			{
-				throw new StoreNotFoundException($"Элемент с идентификатором '{id}' не найден!!!");
+				throw new NotFoundException($"Магазин с идентификатором '{id}' не найден!!!");
 			}
 			else
 			{
@@ -83,7 +83,7 @@ namespace Practice.WebApi.Services
 				}
 			}
 
-			//Преобращование из Store в StoreContractModel
+			//Преобразование из Store в StoreContractModel
 			return _mapper.Map<List<Store>, List<StoreContract>>(stores.ToList());
 		}
 	}

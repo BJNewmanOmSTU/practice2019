@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Practice.Domain;
 using Practice.WebApi.Contracts.StoreContracts;
 using Practice.WebApi.Services;
-using Practice.WebApi.Services.StoreServices;
-
 namespace Practice.WebApi.Controllers
 {
+	/// <summary>
+	/// Контроллер для работы с Магазинами
+	/// </summary>
 	[Route("stores")]
 	public class StoresController : AController
 	{
-		private IStoreService<Store> _storeService;
+		private IStoreService _storeService;
 
 		/// <summary>
 		/// Конструктор контроллера StoresController

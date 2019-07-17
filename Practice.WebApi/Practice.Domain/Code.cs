@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Practice.Domain
 {
@@ -18,12 +15,12 @@ namespace Practice.Domain
 		public string Id { get; set; }
 
 		/// <summary>
-		///Внешний ключ на Продукт
+		///Внешний ключ на Шаблон продукта
 		/// </summary>
 		public string ProductTemplateId { get; set; }
 
 		/// <summary>
-		///Список аттрибутов модели Attribute
+		///Список аттрибутов модели
 		/// </summary>
 		public ICollection<Attribute> Attributes { get; set; }
 
@@ -43,7 +40,7 @@ namespace Practice.Domain
 		public Store Store { get; set; }
 
 		/// <summary>
-		/// Внешнее свойство на Продукт
+		/// Внешнее свойство на Шаблон продукта
 		/// </summary>
 		public ProductTemplate ProductTemplate { get; set; }
 
@@ -58,12 +55,36 @@ namespace Practice.Domain
 		public string Symbol { get; set; }
 
 		/// <summary>
+		/// Статус кода
+		/// </summary>
+		public CodeStatus Status { get; set; }
+
+		/// <summary>
+		/// Номер заказа
+		/// </summary>
+		public string OrderUniqNumber { get; set; }
+
+		/// <summary>
+		/// Определяет был ли удален код
+		/// </summary>
+		public bool Removed { get; set; }
+
+		/// <summary>
+		/// Сам код
+		/// </summary>
+		public string RedeemCode { get; set; }
+
+		/// <summary>
 		/// Конструктор класса Code. При каждом создании нового экземпляра генерирует идентификатор
 		/// </summary>
 		public Code()
 		{
 			Id = Identity.NewId();
 			Attributes = new List<Attribute>();
+			OrderUniqNumber = Identity.NewId();
+			RedeemCode = Identity.NewId();
+			Status = CodeStatus.Active;
+            Removed = false;
 		}
-	}
+    }	
 }

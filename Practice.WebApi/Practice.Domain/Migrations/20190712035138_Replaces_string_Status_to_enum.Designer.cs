@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Practice.Domain;
 
 namespace Practice.Domain.Migrations
 {
     [DbContext(typeof(DomainContext))]
-    partial class DomainContextModelSnapshot : ModelSnapshot
+    [Migration("20190712035138_Replaces_string_Status_to_enum")]
+    partial class Replaces_string_Status_to_enum
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,8 +60,6 @@ namespace Practice.Domain.Migrations
                     b.Property<bool>("Removed");
 
                     b.Property<string>("SellSource");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("StoreId");
 

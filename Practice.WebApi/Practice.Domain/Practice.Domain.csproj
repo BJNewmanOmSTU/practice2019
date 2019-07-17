@@ -27,6 +27,12 @@
     <Compile Remove="Migrations\20190703110446_Added_CodeId_in_Stores_and_ProductTemplate.Designer.cs" />
     <Compile Remove="Migrations\20190708035638_Added_SearchStore_for_filtering.cs" />
     <Compile Remove="Migrations\20190708035638_Added_SearchStore_for_filtering.Designer.cs" />
+    <Compile Remove="Migrations\20190712034017_Replaces string Status to enum.cs" />
+    <Compile Remove="Migrations\20190712034017_Replaces string Status to enum.Designer.cs" />
+    <Compile Remove="Migrations\20190712034344_Replaces string Status to enum.cs" />
+    <Compile Remove="Migrations\20190712034344_Replaces string Status to enum.Designer.cs" />
+    <Compile Remove="Migrations\20190715043838_Added_RegExp.cs" />
+    <Compile Remove="Migrations\20190715043838_Added_RegExp.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

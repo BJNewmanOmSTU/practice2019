@@ -4,12 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace Practice.WebApi.Services.ProductTemplatesServices
+namespace Practice.WebApi.Services
 {
-
-	/// <summary>
-	/// Определяет ошибку при неверном запросе к базе данных
-	/// </summary>
 	public class NotFoundException : Exception
 	{
 		public NotFoundException()
