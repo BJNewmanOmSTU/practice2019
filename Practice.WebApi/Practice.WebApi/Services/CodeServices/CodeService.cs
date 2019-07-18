@@ -95,6 +95,50 @@ namespace Practice.WebApi.Services.CodeServices
 			}
 
 			return codes;
+		/// Функция для получения кода по идентификатору
+		/// </summary>
+		/// <param name="id">Идентификатор кода</param>
+		/// <returns>Возвращает код соответствующий переданному идентификатору</returns>
+		public CodeContract GetCode(string id)
+		{
+			Code code = _codes.Find(id);
+
+			if (code == null)
+			{
+				throw new NotFoundException($"Код с идентификатором '{id}' не найден!");
+			}
+			else
+			{
+				CodeContract codeContract = _mapper.Map<Code, CodeContract>(code);
+				codeContract.ProductTemplateTitle = _productTemplates.Find(code.ProductTemplateId).Name;
+				codeContract.StoreName = _stores.Find(code.StoreId).Name;
+
+				return codeContract;
+			}
+		/// Функция удаления кодов
+		/// </summary>
+		/// <param name="ids">Строка содержащая список идентификаторов
+		/// разделенными запятой</param>
+		/// <returns>Возвращает список удаленных кодов</returns>
+		public DeletedCodes DeleteCodes(string ids)
+		{
+			List<string> codesIds = ids.Split(",").ToList();
+			
+			DeletedCodes deletedCodes = new DeletedCodes();
+
+			foreach (string id in codesIds)
+			{
+				Code code = _codes.Find(id);
+
+				if (code != null)
+				{
+					_codes.Remove(code);
+					_domainContext.SaveChanges();
+					deletedCodes.Ids.Add(id);
+				}
+			}
+
+			return deletedCodes;
 		}
 	}
 }
