@@ -47,5 +47,17 @@ namespace Practice.WebApi.Controllers
 								 .ToList());
 			}
 		}
+
+		/// <summary>
+		/// Delete метод для удаления кодов
+		/// </summary>
+		/// <param name="ids">Строка идентификаторов кодов
+		/// разделенных через запятую</param>
+		/// <returns>Возвращает объект содержащий список удаленных кодов</returns>
+		[HttpDelete]
+		public ActionResult<DeletedCodes> DeleteCodes(string ids)
+		{
+			return _codeService.DeleteCodes(ids);
+		}
 	}
 }
