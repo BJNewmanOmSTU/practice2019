@@ -85,10 +85,13 @@ namespace Practice.WebApi.Services.CodeServices
 		public List<CodeContract> GetListCodes()
 		{
 			List<CodeContract> codes = _mapper.Map<List<Code>, List<CodeContract>>(_codes.ToList());
-			foreach(var code in codes)
+			List<ProductTemplate> productTemplates = _productTemplates.ToList();
+			List<Store> stores = _stores.ToList();
+
+			foreach (var code in codes)
 			{
-				code.ProductTemplateTitle = _productTemplates.Find(_codes.Find(code.Id).ProductTemplateId).Name;
-				code.StoreName = _stores.Find(_codes.Find(code.Id).StoreId).Name;
+				code.ProductTemplateTitle = productTemplates.Find(x => x.Id == _codes.Find(code.Id).ProductTemplateId).Name;
+				code.StoreName = stores.Find(x => x.Id == _codes.Find(code.Id).StoreId).Name;
 			}
 
 			return codes;
