@@ -87,12 +87,12 @@ namespace Practice.WebApi.Services.CodeServices
 		public DeletedCodes DeleteCodes(string ids)
 		{
 			List<string> codesIds = ids.Split(",").ToList();
-			Code code;
+			
 			DeletedCodes deletedCodes = new DeletedCodes();
 
 			foreach (string id in codesIds)
 			{
-				code = _codes.Find(id);
+				Code code = _codes.Find(id);
 
 				if (code != null)
 				{
