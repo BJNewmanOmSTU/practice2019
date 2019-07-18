@@ -91,11 +91,9 @@ namespace Practice.WebApi.Services.CodeServices
 			}
 			else
 			{
-				Store store = _stores.Find(code.StoreId);
-				ProductTemplate productTemplate = _productTemplates.Find(code.ProductTemplateId);
 				CodeContract codeContract = _mapper.Map<Code, CodeContract>(code);
-				codeContract.ProductTemplateTitle = productTemplate.Name;
-				codeContract.StoreName = store.Name;
+				codeContract.ProductTemplateTitle = _productTemplates.Find(code.ProductTemplateId).Name;
+				codeContract.StoreName = _stores.Find(code.StoreId).Name;
 
 				return codeContract;
 			}
