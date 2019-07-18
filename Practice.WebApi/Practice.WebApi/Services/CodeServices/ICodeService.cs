@@ -1,6 +1,4 @@
-﻿using Practice.Domain;
-using Practice.WebApi.Contracts.CodeContracts;
-using System.Collections.Generic;
+﻿using Practice.WebApi.Contracts.CodeContracts;
 
 namespace Practice.WebApi.Services.CodeServices
 {
@@ -17,6 +15,11 @@ namespace Practice.WebApi.Services.CodeServices
 		CodeContract CreateCode(CodeCreateContract code);
 
 		/// <summary>
+		/// Функция для получения кода по идентификатору
+		/// </summary>
+		/// <param name="id">Идентификатор кода</param>
+		/// <returns>Возвращает код соответствующий переданному идентификатору</returns>
+		CodeContract GetCode(string id);
 		/// Функция удаления кодов
 		/// </summary>
 		/// <param name="ids">Строка содержащая список идентификаторов

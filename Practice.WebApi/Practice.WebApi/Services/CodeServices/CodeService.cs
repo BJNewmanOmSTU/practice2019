@@ -79,6 +79,26 @@ namespace Practice.WebApi.Services.CodeServices
 		}
 
 		/// <summary>
+		/// Функция для получения кода по идентификатору
+		/// </summary>
+		/// <param name="id">Идентификатор кода</param>
+		/// <returns>Возвращает код соответствующий переданному идентификатору</returns>
+		public CodeContract GetCode(string id)
+		{
+			Code code = _codes.Find(id);
+
+			if (code == null)
+			{
+				throw new NotFoundException($"Код с идентификатором '{id}' не найден!");
+			}
+			else
+			{
+				CodeContract codeContract = _mapper.Map<Code, CodeContract>(code);
+				codeContract.ProductTemplateTitle = _productTemplates.Find(code.ProductTemplateId).Name;
+				codeContract.StoreName = _stores.Find(code.StoreId).Name;
+
+				return codeContract;
+			}
 		/// Функция удаления кодов
 		/// </summary>
 		/// <param name="ids">Строка содержащая список идентификаторов
