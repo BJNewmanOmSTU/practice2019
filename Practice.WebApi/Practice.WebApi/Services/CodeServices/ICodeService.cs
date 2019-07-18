@@ -1,5 +1,4 @@
-﻿using Practice.Domain;
-using Practice.WebApi.Contracts.CodeContracts;
+﻿using Practice.WebApi.Contracts.CodeContracts;
 using System.Collections.Generic;
 
 namespace Practice.WebApi.Services.CodeServices
