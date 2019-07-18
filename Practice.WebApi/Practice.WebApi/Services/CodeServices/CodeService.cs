@@ -3,6 +3,8 @@ using Practice.Domain;
 using Practice.WebApi.Contracts.CodeContracts;
 using Practice.WebApi.Mapper;
 using Practice.WebApi.Services.ProductTemplatesServices;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Practice.WebApi.Services.CodeServices
 {
@@ -97,6 +99,30 @@ namespace Practice.WebApi.Services.CodeServices
 
 				return codeContract;
 			}
+		/// Функция удаления кодов
+		/// </summary>
+		/// <param name="ids">Строка содержащая список идентификаторов
+		/// разделенными запятой</param>
+		/// <returns>Возвращает список удаленных кодов</returns>
+		public DeletedCodes DeleteCodes(string ids)
+		{
+			List<string> codesIds = ids.Split(",").ToList();
+			
+			DeletedCodes deletedCodes = new DeletedCodes();
+
+			foreach (string id in codesIds)
+			{
+				Code code = _codes.Find(id);
+
+				if (code != null)
+				{
+					_codes.Remove(code);
+					_domainContext.SaveChanges();
+					deletedCodes.Ids.Add(id);
+				}
+			}
+
+			return deletedCodes;
 		}
 	}
 }

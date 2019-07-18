@@ -1,5 +1,4 @@
 ﻿using Practice.WebApi.Contracts.CodeContracts;
-using System.Collections.Generic;
 
 namespace Practice.WebApi.Services.CodeServices
 {
@@ -21,5 +20,11 @@ namespace Practice.WebApi.Services.CodeServices
 		/// <param name="id">Идентификатор кода</param>
 		/// <returns>Возвращает код соответствующий переданному идентификатору</returns>
 		CodeContract GetCode(string id);
+		/// Функция удаления кодов
+		/// </summary>
+		/// <param name="ids">Строка содержащая список идентификаторов
+		/// разделенными запятой</param>
+		/// <returns>Возвращает список удаленных кодов</returns>
+		DeletedCodes DeleteCodes(string ids);
 	}
 }

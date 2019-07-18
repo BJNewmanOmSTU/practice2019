@@ -33,7 +33,7 @@ namespace Practice.WebApi.Controllers
 		/// <param name="code">Объект Кода который нужно создать</param>
 		/// <returns>Возвращает созданный объект</returns>
 		[HttpPost]
-		public ActionResult<CodeContract> Post([FromBody] CodeCreateContract code)
+		public ActionResult<CodeContract> CreateCode([FromBody] CodeCreateContract code)
 		{
 			if (ModelState.IsValid)
 			{ 
@@ -58,6 +58,15 @@ namespace Practice.WebApi.Controllers
 		public ActionResult<CodeContract> GetCode(string id)
 		{
 			return _codeService.GetCode(id);
+		/// Delete метод для удаления кодов
+		/// </summary>
+		/// <param name="ids">Строка идентификаторов кодов
+		/// разделенных через запятую</param>
+		/// <returns>Возвращает объект содержащий список удаленных кодов</returns>
+		[HttpDelete]
+		public ActionResult<DeletedCodes> DeleteCodes(string ids)
+		{
+			return _codeService.DeleteCodes(ids);
 		}
 	}
 }
