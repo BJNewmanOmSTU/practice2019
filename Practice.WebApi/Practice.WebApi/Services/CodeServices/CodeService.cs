@@ -79,6 +79,22 @@ namespace Practice.WebApi.Services.CodeServices
 		}
 
 		/// <summary>
+		/// Функция получения списка кодов
+		/// </summary>
+		/// <returns>Возвращает список кодов</returns>
+		public List<CodeContract> GetListCodes()
+		{
+			List<CodeContract> codes = _mapper.Map<List<Code>, List<CodeContract>>(_codes.ToList());
+			List<ProductTemplate> productTemplates = _productTemplates.ToList();
+			List<Store> stores = _stores.ToList();
+
+			foreach (var code in codes)
+			{
+				code.ProductTemplateTitle = productTemplates.Find(x => x.Id == _codes.Find(code.Id).ProductTemplateId).Name;
+				code.StoreName = stores.Find(x => x.Id == _codes.Find(code.Id).StoreId).Name;
+			}
+
+			return codes;
 		/// Функция для получения кода по идентификатору
 		/// </summary>
 		/// <param name="id">Идентификатор кода</param>

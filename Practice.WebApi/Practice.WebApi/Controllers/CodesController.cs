@@ -49,6 +49,13 @@ namespace Practice.WebApi.Controllers
 		}
 
 		/// <summary>
+		/// Get метод для получения списка кодов
+		/// </summary>
+		/// <returns>Возвращает список кодов</returns>
+		[HttpGet]
+		public ActionResult<List<CodeContract>> GetListCodes()
+		{
+			return _codeService.GetListCodes();
 		/// Get запрос с параметром id, для получения
 		/// кода по идентификатору
 		/// </summary>
