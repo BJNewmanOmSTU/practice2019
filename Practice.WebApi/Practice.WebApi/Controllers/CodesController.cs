@@ -49,31 +49,14 @@ namespace Practice.WebApi.Controllers
 		}
 
 		/// <summary>
-		/// Get метод для получения списка кодов
+		/// Get метод для получения списка кодов (если без параметров),
+		/// иначе отфильтрованный по заданным полям
 		/// </summary>
 		/// <returns>Возвращает список кодов</returns>
 		[HttpGet]
-		public ActionResult<List<CodeContract>> GetListCodes()
+		public ActionResult<List<CodeContract>> GetListCodes(CodeFilter filter)
 		{
-			return _codeService.GetListCodes();
-		/// Get запрос с параметром id, для получения
-		/// кода по идентификатору
-		/// </summary>
-		/// <param name="id">Идентификатор кода</param>
-		/// <returns>Возвращает код соответствующий переданному идентификатору</returns>
-		[HttpGet("{id}")]
-		public ActionResult<CodeContract> GetCode(string id)
-		{
-			return _codeService.GetCode(id);
-		/// Delete метод для удаления кодов
-		/// </summary>
-		/// <param name="ids">Строка идентификаторов кодов
-		/// разделенных через запятую</param>
-		/// <returns>Возвращает объект содержащий список удаленных кодов</returns>
-		[HttpDelete]
-		public ActionResult<DeletedCodes> DeleteCodes(string ids)
-		{
-			return _codeService.DeleteCodes(ids);
+			return _codeService.GetListCodes(filter);
 		}
 	}
 }

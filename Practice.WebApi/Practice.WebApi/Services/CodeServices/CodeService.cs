@@ -82,63 +82,41 @@ namespace Practice.WebApi.Services.CodeServices
 		/// Функция получения списка кодов
 		/// </summary>
 		/// <returns>Возвращает список кодов</returns>
-		public List<CodeContract> GetListCodes()
+		public List<CodeContract> GetListCodes(CodeFilter filter)
 		{
-			List<CodeContract> codes = _mapper.Map<List<Code>, List<CodeContract>>(_codes.ToList());
+			var codes = _codes.AsQueryable();
+
+			if (filter != null)
+			{
+				if (!string.IsNullOrEmpty(filter.ProductTemplateId))
+				{
+					codes = codes.Where(x => x.ProductTemplateId == filter.ProductTemplateId);
+				}
+				if (!string.IsNullOrEmpty(filter.SellSource))
+				{
+					codes = codes.Where(x => x.SellSource == filter.SellSource);
+				}
+				if (!string.IsNullOrEmpty(filter.Status))
+				{
+					codes = codes.Where(x => x.Status.ToString() == filter.Status);
+				}
+				if (!string.IsNullOrEmpty(filter.StoreId))
+				{
+					codes = codes.Where(x => x.StoreId == filter.StoreId);
+				}
+			}
+
+			List<CodeContract> codeContracts = _mapper.Map<List<Code>, List<CodeContract>>(codes.ToList());
 			List<ProductTemplate> productTemplates = _productTemplates.ToList();
 			List<Store> stores = _stores.ToList();
 
-			foreach (var code in codes)
+			foreach (var code in codeContracts)
 			{
 				code.ProductTemplateTitle = productTemplates.Find(x => x.Id == _codes.Find(code.Id).ProductTemplateId).Name;
 				code.StoreName = stores.Find(x => x.Id == _codes.Find(code.Id).StoreId).Name;
 			}
 
-			return codes;
-		/// Функция для получения кода по идентификатору
-		/// </summary>
-		/// <param name="id">Идентификатор кода</param>
-		/// <returns>Возвращает код соответствующий переданному идентификатору</returns>
-		public CodeContract GetCode(string id)
-		{
-			Code code = _codes.Find(id);
-
-			if (code == null)
-			{
-				throw new NotFoundException($"Код с идентификатором '{id}' не найден!");
-			}
-			else
-			{
-				CodeContract codeContract = _mapper.Map<Code, CodeContract>(code);
-				codeContract.ProductTemplateTitle = _productTemplates.Find(code.ProductTemplateId).Name;
-				codeContract.StoreName = _stores.Find(code.StoreId).Name;
-
-				return codeContract;
-			}
-		/// Функция удаления кодов
-		/// </summary>
-		/// <param name="ids">Строка содержащая список идентификаторов
-		/// разделенными запятой</param>
-		/// <returns>Возвращает список удаленных кодов</returns>
-		public DeletedCodes DeleteCodes(string ids)
-		{
-			List<string> codesIds = ids.Split(",").ToList();
-			
-			DeletedCodes deletedCodes = new DeletedCodes();
-
-			foreach (string id in codesIds)
-			{
-				Code code = _codes.Find(id);
-
-				if (code != null)
-				{
-					_codes.Remove(code);
-					_domainContext.SaveChanges();
-					deletedCodes.Ids.Add(id);
-				}
-			}
-
-			return deletedCodes;
+			return codeContracts;
 		}
 	}
 }
